@@ -1,0 +1,51 @@
+
+[
+    {
+        "name": "ndmt1at",
+        "email": "trminh891@gmail.com",
+        "phone": "0901237453",
+        "photo": "imagecvb.png",
+        "role": "admin",
+        "password": "12345678",
+        "passwordConfirm": "12345678",
+        "active": true
+    },
+    {
+        "name": "nguyen duc",
+        "email": "trminh789@gmail.com",
+        "phone": "0907894215",
+        "photo": "imagecvsxb.png",
+        "password": "12345678",
+        "passwordConfirm": "12345678",
+        "active": true
+    },
+    {
+        "name": "minh tri nguyen",
+        "email": "trminh@gmail.com",
+        "phone": "0807854125",
+        "photo": "imagecvb.png",
+        "password": "12345678",
+        "passwordConfirm": "12345678",
+        "active": true
+    },
+    {
+        "name": "ttg",
+        "email": "ttgshop@github.io",
+        "phone": "0901231223",
+        "photo": "ttg.png",
+        "password": "12345678",
+        "passwordConfirm": "12345678",
+        "active": true
+    },
+    {
+        "name": "trieu trang tong",
+        "email": "ttongp@github.io",
+        "phone": "0971231223",
+        "photo": "ytcjhj56.png",
+        "password": "12345678",
+        "passwordConfirm": "12345678",
+        "active": true
+    }
+]
+  
+

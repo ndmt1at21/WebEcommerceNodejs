@@ -1,0 +1,650 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='Ansonika')
+  title Allaia | Bootstrap eCommerce Template - ThemeForest
+  // Favicons
+  link(rel='shortcut icon' href='img/favicon.ico' type='image/x-icon')
+  link(rel='apple-touch-icon' type='image/x-icon' href='img/apple-touch-icon-57x57-precomposed.png')
+  link(rel='apple-touch-icon' type='image/x-icon' sizes='72x72' href='img/apple-touch-icon-72x72-precomposed.png')
+  link(rel='apple-touch-icon' type='image/x-icon' sizes='114x114' href='img/apple-touch-icon-114x114-precomposed.png')
+  link(rel='apple-touch-icon' type='image/x-icon' sizes='144x144' href='img/apple-touch-icon-144x144-precomposed.png')
+  // GOOGLE WEB FONT
+  link(href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap' rel='stylesheet')
+  // BASE CSS
+  link(href='css/bootstrap.custom.min.css' rel='stylesheet')
+  link(href='css/style.css' rel='stylesheet')
+  // SPECIFIC CSS
+  link(href='css/listing.css' rel='stylesheet')
+  // YOUR CUSTOM CSS
+  link(href='css/custom.css' rel='stylesheet')
+#page.theia-exception
+  header.version_1
+    .layer
+    // Mobile menu overlay mask
+    .main_header
+      .container
+        .row.small-gutters
+          .col-xl-3.col-lg-3.d-lg-flex.align-items-center
+            #logo
+              a(href='index.html')
+                img(src='img/logo.svg' alt='' width='100' height='35')
+          nav.col-xl-6.col-lg-7
+            a.open_close(href='javascript:void(0);')
+              .hamburger.hamburger--spin
+                .hamburger-box
+                  .hamburger-inner
+          .col-xl-3.col-lg-2.d-lg-flex.align-items-center.justify-content-end.text-right
+            a.phone_top(href='tel://9438843343')
+              strong
+                span Need Help?
+                | +94 423-23-221
+        // /row
+    // /main_header
+    .main_nav.Sticky
+      .container
+        .row.small-gutters
+          .col-xl-3.col-lg-3.col-md-3
+            nav.categories
+              ul.clearfix
+                li
+                  span
+                    a(href='#')
+                      span.hamburger.hamburger--spin
+                        span.hamburger-box
+                          span.hamburger-inner
+                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Categories
+                  #menu
+                    ul
+                      li
+                        span
+                          a(href='#0') Collections
+                      li
+                        span
+                          a(href='#') Men
+                      li
+                        span
+                          a(href='#') Women
+                      li
+                        span
+                          a(href='#') Boys
+                      li
+                        span
+                          a(href='#') Girls
+                      li
+                        span
+                          a(href='#') Customize
+          .col-xl-6.col-lg-7.col-md-6.d-none.d-md-block
+            .custom-search-input
+              input(type='text' placeholder='Search over 10.000 products')
+              button(type='submit')
+                i.header-icon_search_custom
+          .col-xl-3.col-lg-2.col-md-3
+            ul.top_tools
+              li
+                .dropdown.dropdown-cart
+                  a.cart_bt(href='cart.html')
+                    strong 2
+                  .dropdown-menu
+                    ul
+                      li
+                        a(href='product-detail.html')
+                          figure
+                            img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/thumb/1.jpg' alt='' width='50' height='50')
+                          strong
+                            span 1x Armor Air x Fear
+                            | $90.00
+                        a.action(href='#0')
+                          i.ti-trash
+                      li
+                        a(href='product-detail.html')
+                          figure
+                            img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/thumb/2.jpg' alt='' width='50' height='50')
+                          strong
+                            span 1x Armor Okwahn II
+                            | $110.00
+                        a.action(href='0')
+                          i.ti-trash
+                    .total_drop
+                      .clearfix
+                        strong Total
+                        span $200.00
+                      a.btn_1.outline(href='cart.html') View Cart
+                      a.btn_1(href='checkout.html') Checkout
+                // /dropdown-cart
+              li
+                a.wishlist(href='#0')
+                  span Wishlist
+              li
+                .dropdown.dropdown-access
+                  a.access_link(href='account.html')
+                    span Account
+                  .dropdown-menu
+                    a.btn_1(href='account.html') Sign In or Sign Up
+                    ul
+                      li
+                        a(href='track-order.html')
+                          i.ti-truck
+                          | Track your Order
+                      li
+                        a(href='account.html')
+                          i.ti-package
+                          | My Orders
+                      li
+                        a(href='account.html')
+                          i.ti-user
+                          | My Profile
+                      li
+                        a(href='help.html')
+                          i.ti-help-alt
+                          | Help and Faq
+                // /dropdown-access
+        // /row
+      .search_mob_wp
+        input.form-control(type='text' placeholder='Search over 10.000 products')
+        input.btn_1.full-width(type='submit' value='Search')
+      // /search_mobile
+    // /main_nav
+  // /header
+  main
+    .top_banner
+      .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.3)')
+        .container
+          .breadcrumbs
+            ul
+              li
+                a(href='#') Home
+              li
+                a(href='#') Category
+              li Page active
+          h1 Shoes - Grid listing
+      img.img-fluid(src='img/bg_cat_shoes.jpg' alt='')
+    // /top_banner
+    #stick_here
+    .toolbox.elemento_stick
+      .container
+        ul.clearfix
+          li
+            .sort_select
+              select#sort(name='sort')
+                option(value='popularity' selected='selected') Sort by popularity
+                option(value='rating') Sort by average rating
+                option(value='date') Sort by newness
+                option(value='price') Sort by price: low to high
+                option(value='price-desc')
+                  | Sort by price: high to
+          li
+            a(href='#0')
+              i.ti-view-grid
+            a(href='listing-row-1-sidebar-left.html')
+              i.ti-view-list
+          li
+            a.open_filters(href='#0')
+              i.ti-filter
+              span Filters
+    // /toolbox
+    .container.margin_30
+      .row
+        aside#sidebar_fixed.col-lg-3
+          .filter_col
+            .inner_bt
+              a.open_filters(href='#')
+                i.ti-close
+            .filter_type.version_2
+              h4
+                a.opened(href='#filter_1' data-toggle='collapse') Categories
+              #filter_1.collapse.show
+                ul
+                  li
+                    label.container_check
+                      | Men 
+                      small 12
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Women 
+                      small 24
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Running 
+                      small 23
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Training 
+                      small 11
+                      input(type='checkbox')
+                      span.checkmark
+              // /filter_type
+            // /filter_type
+            .filter_type.version_2
+              h4
+                a.opened(href='#filter_2' data-toggle='collapse') Color
+              #filter_2.collapse.show
+                ul
+                  li
+                    label.container_check
+                      | Blue 
+                      small 06
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Red 
+                      small 12
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Orange 
+                      small 17
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Black 
+                      small 43
+                      input(type='checkbox')
+                      span.checkmark
+            // /filter_type
+            .filter_type.version_2
+              h4
+                a.closed(href='#filter_3' data-toggle='collapse') Brands
+              #filter_3.collapse
+                ul
+                  li
+                    label.container_check
+                      | Adidas 
+                      small 11
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Nike 
+                      small 08
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Vans 
+                      small 05
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Puma 
+                      small 18
+                      input(type='checkbox')
+                      span.checkmark
+            // /filter_type
+            .filter_type.version_2
+              h4
+                a.closed(href='#filter_4' data-toggle='collapse') Price
+              #filter_4.collapse
+                ul
+                  li
+                    label.container_check
+                      | $0 &mdash; $50
+                      small 11
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | $50 &mdash; $100
+                      small 08
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | $100 &mdash; $150
+                      small 05
+                      input(type='checkbox')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | $150 &mdash; $200
+                      small 18
+                      input(type='checkbox')
+                      span.checkmark
+            // /filter_type
+            .buttons
+              a.btn_1(href='#0') Filter
+              a.btn_1.gray(href='#0') Reset
+        // /col
+        .col-lg-9
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/1.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Air x Fear
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $48.00
+                span.old_price $60.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/2.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Okwahn II
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $90.00
+                span.old_price $170.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/3.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Air Wildwood ACG
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $75.00
+                span.old_price $155.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/4.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor ACG React Terra
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $110.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/5.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Air Zoom Alpha
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $140.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/6.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Air Alpha
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $130.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .row.row_item
+            .col-sm-4
+              figure
+                a(href='product-detail-1.html')
+                  img.img-fluid.lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/7.jpg' alt='')
+            .col-sm-8
+              .rating
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star.voted
+                i.icon-star
+              a(href='product-detail-1.html')
+                h3 Armor Air 98
+              p
+                | Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident...
+              .price_box
+                span.new_price $115.00
+              ul
+                li
+                  a.btn_1(href='#0') Add to cart
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to favorites')
+                    i.ti-heart
+                    span Add to favorites
+                li
+                  a.btn_1.gray.tooltip-1(href='#0' data-toggle='tooltip' data-placement='top' title='Add to compare')
+                    i.ti-control-shuffle
+                    span Add to compare
+          // /row_item
+          .pagination__wrapper
+            ul.pagination
+              li
+                a.prev(href='#0' title='previous page') &#x276E;
+              li
+                a.active(href='#0') 1
+              li
+                a(href='#0') 2
+              li
+                a(href='#0') 3
+              li
+                a(href='#0') 4
+              li
+                a.next(href='#0' title='next page') &#x276F;
+        // /col
+      // /row
+    // /container
+  // /main
+  footer.revealed
+    .container
+      .row
+        .col-lg-3.col-md-6
+          h3(data-target='#collapse_1') Quick Links
+          #collapse_1.collapse.dont-collapse-sm.links
+            ul
+              li
+                a(href='about.html') About us
+              li
+                a(href='help.html') Faq
+              li
+                a(href='help.html') Help
+              li
+                a(href='account.html') My account
+              li
+                a(href='blog.html') Blog
+              li
+                a(href='contacts.html') Contacts
+        .col-lg-3.col-md-6
+          h3(data-target='#collapse_2') Categories
+          #collapse_2.collapse.dont-collapse-sm.links
+            ul
+              li
+                a(href='listing-grid-1-full.html') Yonex
+              li
+                a(href='listing-grid-2-full.html') Lining
+              li
+                a(href='listing-grid-1-full.html') Furniture
+              li
+                a(href='listing-grid-3.html') Glasses
+              li
+                a(href='listing-grid-1-full.html') Shoes
+              li
+                a(href='listing-grid-1-full.html') Watches
+        .col-lg-3.col-md-6
+          h3(data-target='#collapse_3') Contacts
+          #collapse_3.collapse.dont-collapse-sm.contacts
+            ul
+              li
+                i.ti-home
+                | Linh Trung, Thu Duc
+                br
+                | HCM
+              li
+                i.ti-headphone-alt
+                | 0905 871 254
+              li
+                i.ti-email
+                a(href='#0') trminh36@gmail.com
+        .col-lg-3.col-md-6
+          h3(data-target='#collapse_4') Keep in touch
+          #collapse_4.collapse.dont-collapse-sm
+            #newsletter
+              .form-group
+                input#email_newsletter.form-control(type='email' name='email_newsletter' placeholder='Your email')
+                button#submit-newsletter(type='submit')
+                  i.ti-angle-double-right
+            .follow_us
+              h5 Follow Us
+              ul
+                li
+                  a(href='#0')
+                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/twitter_icon.svg' alt='')
+                li
+                  a(href='#0')
+                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/facebook_icon.svg' alt='')
+                li
+                  a(href='#0')
+                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/instagram_icon.svg' alt='')
+                li
+                  a(href='#0')
+                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/youtube_icon.svg' alt='')
+      // /row
+      hr
+      .row.add_bottom_25
+        .col-lg-6
+          ul.footer-selector.clearfix
+            li
+              img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/cards_all.svg' alt='' width='198' height='30')
+        .col-lg-6
+          ul.additional_links
+            li
+              a(href='#0') Terms and conditions
+            li
+              a(href='#0') Privacy
+            li
+              span &copy; 2020 HCMUS
+  // /footer
+// page
+#toTop
+// Back to top button
+// COMMON SCRIPTS
+script(src='js/common_scripts.min.js')
+script(src='js/main.js')
+// SPECIFIC SCRIPTS
+script(src='js/sticky_sidebar.min.js')
+script(src='js/specific_listing.js')
