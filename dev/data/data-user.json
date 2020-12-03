@@ -8,11 +8,12 @@
         "role": "admin",
         "password": "12345678",
         "passwordConfirm": "12345678",
-        "active": true
+        "active": true,
+        "passwordChangedAt": "12-02-2020"
     },
     {
         "name": "nguyen duc",
-        "email": "trminh789@gmail.com",
+        "email": "trminh9@gmail.com",
         "phone": "0907894215",
         "photo": "imagecvsxb.png",
         "password": "12345678",
@@ -44,7 +45,8 @@
         "photo": "ytcjhj56.png",
         "password": "12345678",
         "passwordConfirm": "12345678",
-        "active": true
+        "active": true,
+        "passwordChangedAt": "12-02-2020"
     }
 ]
   

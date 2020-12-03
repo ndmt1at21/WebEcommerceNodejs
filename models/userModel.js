@@ -56,7 +56,12 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
     select: false
-  }
+  },
+  createdDate: {
+    type: Date,
+    default: Date.now()
+  },
+  passwordChangedAt: Date
 });
 
 userSchema.pre('save', async function (next) {
@@ -64,6 +69,27 @@ userSchema.pre('save', async function (next) {
   this.passwordConfirm = undefined;
   next();
 });
+
+userSchema.methods.checkCorrectPassword = async function (
+  inputPassword,
+  userPassword
+) {
+  return await bcrypt.compare(inputPassword, userPassword);
+};
+
+userSchema.methods.isChangedPasswordAfter = function (JWTTime) {
+  console.log('dsghbwsyg');
+  // convert time (ex: 02-01-2012 UTC ..) to second
+  // getDate return milisecond
+  if (this.passwordChangeAt) {
+    const passChangedAt = this.passwordChangedAt.getTime() / 1000;
+    if (passChangedAt > JWTTime) {
+      return true;
+    }
+  }
+
+  return false;
+};
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

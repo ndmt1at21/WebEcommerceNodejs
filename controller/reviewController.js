@@ -1,8 +1,8 @@
 const catchAsync = require('../ultilities/catchAsync');
 const Review = require('./../models/reviewModel');
 
-exports.getAllReview = catchAsync(async (req, res, next) => {
-  const reviews = Review.find();
+exports.getAllReviews = catchAsync(async (req, res, next) => {
+  const reviews = await Review.find();
 
   res.status(200).json({
     reviews
@@ -12,7 +12,7 @@ exports.getAllReview = catchAsync(async (req, res, next) => {
 });
 
 exports.createReview = catchAsync(async (req, res, next) => {
-  const review = Review.create(req.body);
+  const review = await Review.create(req.body);
 
   res.status(200).json({
     review

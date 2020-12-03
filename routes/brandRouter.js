@@ -3,5 +3,7 @@ const express = require('express');
 
 const router = express.Router();
 
-router.get('/', brandController.getAllbrand);
-router.post('/', brandController.createReview);
+router.get('/', brandController.getAllBrands);
+router.post('/', brandController.createBrand);
+
+module.exports = router;
