@@ -23,8 +23,9 @@ head
         link(href='/css/custom.css' rel='stylesheet')
 
 body
-    include _header 
-
+    include _header
+    block header
+    
     block content
 
     include _footer
@@ -32,7 +33,7 @@ body
 
     // Back to top button
     // COMMON SCRIPTS
-    script(src='js/common_scripts.min.js')
-    script(src='js/main.js')
+    script(src='/js/common_scripts.min.js')
+    script(src='/js/main.js')
     // SPECIFIC SCRIPTS
-    script(src='js/carousel-home.min.js')
+    script(src='/js/carousel-home.min.js')

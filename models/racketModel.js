@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const { default: slugify } = require('slugify');
+const Brand = require('./brandModel');
+const AppError = require('./../ultilities/appError');
 
 const racketSchema = mongoose.Schema({
   name: {
@@ -10,11 +13,9 @@ const racketSchema = mongoose.Schema({
     minlength: 10,
     maxlength: 100
   },
-  manufacturer: {
+  brand: {
     type: String,
-    required: true,
-    minlength: 5,
-    maxlength: 20
+    required: true
   },
   category: {
     type: String,
@@ -30,11 +31,13 @@ const racketSchema = mongoose.Schema({
   flex: {
     type: String,
     required: true,
-    enum: ['Dẻo', 'Trung bình', 'Cứng', 'Rất cứng']
+    lowercase: true,
+    enum: ['flex', 'medium', 'stiff', 'very stiff']
   },
   difficulty: {
     type: String,
-    enum: ['Dễ', 'Trung bình', 'Khó']
+    lowercase: true,
+    enum: ['normal', 'medium', 'advanced']
   },
   frame: {
     type: [String],
@@ -104,12 +107,35 @@ const racketSchema = mongoose.Schema({
     default: 'default.jpg'
   },
   images: [String],
+  active: {
+    type: Boolean,
+    default: true
+  },
+  quantity: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  sold: {
+    type: Number,
+    default: 0
+  },
   slug: String
 });
+
+racketSchema.plugin(mongoosePaginate);
 
 racketSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
+});
+
+racketSchema.pre('save', async function (next) {
+  const brand = await Brand.find({ name: this.brand });
+
+  if (!brand.length) {
+    next(new AppError('Brand is not found', 400));
+  }
 });
 
 racketSchema.virtual('weightAvg').get(function () {

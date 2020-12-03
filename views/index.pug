@@ -4,75 +4,33 @@ block content
   main
     #carousel-home
       .owl-carousel.owl-theme
-        .owl-slide.cover(style='background-image: url(img/slides/slide_home_2.jpg);')
-          .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.5)')
-            .container
-              .row.justify-content-center.justify-content-md-end
-                .col-lg-6.static
-                  .slide-text.text-right.white
-                    h2.owl-slide-animated.owl-slide-title
-                      | Attack Air
-                      br
-                      | Max 720 Sage Low
-                    p.owl-slide-animated.owl-slide-subtitle
-                      | Limited items available at this price
-                    .owl-slide-animated.owl-slide-cta
-                      a.btn_1(href='listing-grid-1-full.html' role='button') Shop Now
-        // /owl-slide
-        .owl-slide.cover(style='background-image: url(img/slides/slide_home_1.jpg);')
-          .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.5)')
-            .container
-              .row.justify-content-center.justify-content-md-start
-                .col-lg-6.static
-                  .slide-text.white
-                    h2.owl-slide-animated.owl-slide-title
-                      | Attack Air
-                      br
-                      | VaporMax Flyknit 3
-                    p.owl-slide-animated.owl-slide-subtitle
-                      | Limited items available at this price
-                    .owl-slide-animated.owl-slide-cta
-                      a.btn_1(href='listing-grid-1-full.html' role='button') Shop Now
-        // /owl-slide
-        .owl-slide.cover(style='background-image: url(img/slides/slide_home_3.jpg);')
-          .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(255, 255, 255, 0.5)')
-            .container
-              .row.justify-content-center.justify-content-md-start
-                .col-lg-12.static
-                  .slide-text.text-center.black
-                    h2.owl-slide-animated.owl-slide-title
-                      | Attack Air
-                      br
-                      | Monarch IV SE
-                    p.owl-slide-animated.owl-slide-subtitle
-                      | Lightweight cushioning and durable support with a Phylon midsole
-                    .owl-slide-animated.owl-slide-cta
-                      a.btn_1(href='listing-grid-1-full.html' role='button') Shop Now
-          // /owl-slide
-      #icon_drag_mobile
-    // /carousel
+        // SLIDES
+        each slide in slides 
+          .owl-slide.cover(style=`background-image: url(img/slides/${slide.image});`)
+            .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.5)')
+              .container
+                .row.justify-content-center.justify-content-md-end
+                  .col-lg-6.static
+                    .slide-text.text-right.white
+                      h2.owl-slide-animated.owl-slide-title
+                        | #{slide.title[0]}
+                        br 
+                        | #{slide.title[1]}
+                      p.owl-slide-animated.owl-slide-subtitle= `${slide.subtitle}`
+                      .owl-slide-animated.owl-slide-cta
+                        a.btn_1(href=`${slide.ref}` role='button') Shop Now
+
+    // BANNER
     ul#banners_grid.clearfix
-      li
-        a.img_container(href='#0')
-          img.lazy(src='img/banners_cat_placeholder.jpg' data-src='img/banner_1.jpg' alt='')
-          .short_info.opacity-mask(data-opacity-mask='rgba(0, 0, 0, 0.5)')
-            h3 Men&apos;s Collection
-            div
-              span.btn_1 Shop Now
-      li
-        a.img_container(href='#0')
-          img.lazy(src='img/banners_cat_placeholder.jpg' data-src='img/banner_2.jpg' alt='')
-          .short_info.opacity-mask(data-opacity-mask='rgba(0, 0, 0, 0.5)')
-            h3 Womens&apos;s Collection
-            div
-              span.btn_1 Shop Now
-      li
-        a.img_container(href='#0')
-          img.lazy(src='img/banners_cat_placeholder.jpg' data-src='img/banner_3.jpg' alt='')
-          .short_info.opacity-mask(data-opacity-mask='rgba(0, 0, 0, 0.5)')
-            h3 Kids&apos;s Collection
-            div
-              span.btn_1 Shop Now
+      each banner in banners
+        li
+          a.img_container(href=`${banner.ref}`)
+            img.lazy(src='img/banners_cat_placeholder.jpg' data-src=`img/banner/${banner.image}` alt='')
+            .short_info.opacity-mask(data-opacity-mask='rgba(0, 0, 0, 0.5)')
+              h3= `${banner.title}`
+              div
+                span.btn_1 Shop Now
+
     // /banners_grid
     .container.margin_60_35
       .main_title
@@ -80,127 +38,6 @@ block content
         span Products
         p Cum doctus civibus efficiantur in imperdiet deterruisset
       .owl-carousel.owl-theme.products_carousel
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/4.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 ACG React Terra
-            .price_box
-              span.new_price $110.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/5.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Zoom Alpha
-            .price_box
-              span.new_price $140.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/8.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Color 720
-            .price_box
-              span.new_price $120.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/2.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Okwahn II
-            .price_box
-              span.new_price $90.00
-              span.old_price $170.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
         .item
           .grid_item
             figure
@@ -240,127 +77,6 @@ block content
         span Products
         p Cum doctus civibus efficiantur in imperdiet deterruisset
       .owl-carousel.owl-theme.products_carousel
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/4.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 ACG React Terra
-            .price_box
-              span.new_price $110.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/5.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Zoom Alpha
-            .price_box
-              span.new_price $140.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/8.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Color 720
-            .price_box
-              span.new_price $120.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/2.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Okwahn II
-            .price_box
-              span.new_price $90.00
-              span.old_price $170.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
         .item
           .grid_item
             figure
