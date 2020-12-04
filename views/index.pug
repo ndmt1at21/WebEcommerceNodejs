@@ -34,45 +34,6 @@ block content
     // /banners_grid
     .container.margin_60_35
       .main_title
-        h2 Yonex
-        span Products
-        p Cum doctus civibus efficiantur in imperdiet deterruisset
-      .owl-carousel.owl-theme.products_carousel
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/3.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Wildwood ACG
-            .price_box
-              span.new_price $75.00
-              span.old_price $155.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-      // /products_carousel
-    // /container
-    .container.margin_60_35
-      .main_title
         h2 Victor
         span Products
         p Cum doctus civibus efficiantur in imperdiet deterruisset
@@ -110,29 +71,9 @@ block content
         // /item
       // /products_carousel
     // /container
-    .bg_gray
-      .container.margin_30
-        #brands.owl-carousel.owl-theme
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_1.png' alt='')
-          // /item
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_2.png' alt='')
-          // /item
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_3.png' alt='')
-          // /item
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_4.png' alt='')
-          // /item
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_5.png' alt='')
-          // /item
-          .item
-            a(href='#0')
-              img.owl-lazy(src='img/brands/placeholder_brands.png' data-src='img/brands/logo_6.png' alt='')
+
+    // COMMON SCRIPTS
+    script(src='js/common_scripts.min.js')
+    script(src='js/main.js')
+    // SPECIFIC SCRIPTS
+    script(src='js/carousel-home.min.js')

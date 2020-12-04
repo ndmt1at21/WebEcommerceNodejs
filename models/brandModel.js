@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const mongoosePaginate = require('mongoose-paginate-v2');
-const { default: slugify } = require('slugify');
 
 const brandSchema = mongoose.Schema({
   name: {
@@ -12,8 +10,6 @@ const brandSchema = mongoose.Schema({
     required: true
   }
 });
-
-brandSchema.plugin(mongoosePaginate);
 
 const Brand = mongoose.model('Brand', brandSchema);
 module.exports = Brand;

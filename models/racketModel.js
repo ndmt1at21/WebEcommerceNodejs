@@ -109,7 +109,8 @@ const racketSchema = mongoose.Schema({
   images: [String],
   active: {
     type: Boolean,
-    default: true
+    default: true,
+    select: false
   },
   quantity: {
     type: Number,
@@ -118,7 +119,8 @@ const racketSchema = mongoose.Schema({
   },
   sold: {
     type: Number,
-    default: 0
+    default: 0,
+    select: false
   },
   slug: String
 });

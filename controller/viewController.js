@@ -1,6 +1,7 @@
 const Racket = require('./../models/racketModel');
 const User = require('./../models/racketModel');
 const catchAsync = require('./../ultilities/catchAsync');
+const authController = require('./../controller/authController');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
   const slides = [
@@ -42,9 +43,26 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     }
   ];
 
-  // res.status(200).render('index', {
-  //   slides,
-  //   banners
-  // });
+  res.status(200).render('index', {
+    title: 'TTShop - Shop cầu lông uy tín',
+    slides,
+    banners
+  });
   next();
+});
+
+exports.getLogin = catchAsync(async (req, res, next) => {
+  if (req.user) {
+    res.redirect('/');
+  }
+
+  res.status(200).render('login', {
+    title: 'Đăng nhập để tiếp tục'
+  });
+});
+
+exports.getCart = catchAsync(async (req, res, next) => {
+  res.status(200).render('cart', {
+    title: 'Giỏ hàng'
+  });
 });
