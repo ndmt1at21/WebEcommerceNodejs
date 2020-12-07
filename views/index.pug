@@ -1,4 +1,9 @@
 extends base
+include _productCard
+
+mixin sectionProductType(nameSection) 
+  .main_title
+    h2= nameSection
 
 block content
   main
@@ -33,47 +38,18 @@ block content
 
     // /banners_grid
     .container.margin_60_35
-      .main_title
-        h2 Victor
-        span Products
-        p Cum doctus civibus efficiantur in imperdiet deterruisset
-      .owl-carousel.owl-theme.products_carousel
-        .item
-          .grid_item
-            figure
-              a(href='product-detail.html')
-                img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/3.jpg' alt='')
-            .rating
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star.voted
-              i.icon-star
-            a(href='product-detail.html')
-              h3 Air Wildwood ACG
-            .price_box
-              span.new_price $75.00
-              span.old_price $155.00
-            ul
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                  i.ti-heart
-                  span Add to favorites
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                  i.ti-control-shuffle
-                  span Add to compare
-              li
-                a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                  i.ti-shopping-cart
-                  span Add to cart
-          // /grid_item
-        // /item
-      // /products_carousel
-    // /container
+        // SECTION PRODUCT: BEST SELLING, NEWEST...
+        each sectionRacket in sectionRackets 
+          +sectionProductType(sectionRacket.title)
+          .owl-carousel.owl-theme.products_carousel
+            each racket in sectionRacket.rackets
+              +productCard(`${racket.slug}.${racket._id}`, racket.imageCover, 5, racket.name, 600, 200)
+      
+      
 
     // COMMON SCRIPTS
     script(src='js/common_scripts.min.js')
     script(src='js/main.js')
     // SPECIFIC SCRIPTS
     script(src='js/carousel-home.min.js')
+    script(src='js/overview.js')

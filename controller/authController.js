@@ -34,17 +34,20 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Please input email and password', 401));
   }
 
-  console.log(email, password);
-
   const user = await User.findOne({ email }).select('+password');
 
   if (!user || !(await user.checkCorrectPassword(password, user.password))) {
     return next(new AppError('Incorrect user or password'));
   }
 
+  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE_IN
+  });
+
+  console.log(token);
   res.status(200).json({
     status: 'success',
-    user
+    token
   });
 });
 

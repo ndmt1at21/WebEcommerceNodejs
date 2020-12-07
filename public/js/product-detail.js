@@ -1,0 +1,14 @@
+const addToCartBtn = document.getElementById('btn-add-cart');
+const quantityCart = document.getElementById('quantity_1');
+
+if (addToCartBtn) {
+  addToCartBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const url = window.location.toString();
+    const id = url.slice(url.lastIndexOf('.') + 1);
+
+    let quantity = 1;
+    if (quantityCart) quantity = quantityCart.value;
+    localStorage.setItem(id, quantity);
+  });
+}

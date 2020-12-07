@@ -28,3 +28,8 @@
   .alert--error {
     background-color: rgba(235, 77, 75, 0.9);
   }
+
+  #thumb_cart_small {
+    width: 30%;
+    height: 30%;
+  }

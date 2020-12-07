@@ -120,8 +120,8 @@
   }
 }
 .thumb_cart {
-  width: 60px;
-  height: 60px;
+  width: 30px;
+  height: 30px;
   overflow: hidden;
   margin-right: 10px;
   float: left;
@@ -131,7 +131,7 @@
   box-sizing: content-box;
 }
 .thumb_cart img {
-  width: 60px;
+  width: 30px;
   height: auto;
   position: absolute;
   left: 50%;

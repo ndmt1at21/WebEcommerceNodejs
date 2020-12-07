@@ -1,7 +1,9 @@
 import '@babel/polyfill';
 import { login, reset } from './login';
+import { rowProductHtml, fetchData } from './cart';
 
 const loginForm = document.querySelector('.form_container');
+const cartTable = document.getElementById('cart-table');
 
 if (loginForm)
   loginForm.addEventListener('submit', (e) => {
@@ -13,3 +15,14 @@ if (loginForm)
     if (emailForgot) reset(emailForgot);
     else login(email, password);
   });
+
+if (cartTable) {
+  const productsInCart = JSON.parse(localStorage.getItem('cart'));
+
+  for (const id in productsInCart) {
+    
+    cartTable.insertAdjacentHTML(
+      'beforeend',
+    );
+  }
+}

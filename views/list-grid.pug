@@ -1,0 +1,121 @@
+extends base
+include _productCard
+include _paginate
+
+mixin item(url, img, productName, price, priceDiscount) 
+  .grid_item
+    figure
+      a(href= url)
+        img.img-fluid.lazy(src=`img/rackets/${img}` data-src='img/products/shoes/1.jpg' alt='')
+    a(href= url)
+      h3= productName
+    .price_box
+      span.new_price= `${price}đ`
+      span.old_price= `${priceDiscount}đ`
+    ul
+      li
+        a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to compare')
+          i.ti-control-shuffle(value= url)
+          span Add to compare
+      li
+        a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to cart')
+          i.ti-shopping-cart(value= url)
+          span Add to cart
+
+
+block append head
+  link(href='/css/listing.css' rel='stylesheet')
+
+block content
+  main
+    .container.margin_30
+      .row
+        .col-lg-9
+          .top_banner
+            .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.3)')
+              .container.pl-lg-5
+                h1 Vợt cầu lông - Grid listing
+            img.img-fluid(src='img/bg_cat_shoes.jpg' alt='')
+         
+          // /top_banner
+          #stick_here
+          .toolbox.elemento_stick.add_bottom_30
+            .container
+              ul.clearfix
+                li
+                  .sort_select
+                    select#sort(name='sort')
+                      option(value='price' selected='selected') Giá tăng dần
+                      option(value='-price') Giá giảm dần
+                      option(value='name') Từ A - Z
+                      option(value='-name') Từ Z - A
+                      option(value='sold') Mua nhiều
+
+                li
+                  a.open_filters(href='#0')
+                    i.ti-filter
+                    span Tìm kiếm
+          // /toolbox
+          .row.small-gutters
+            each racket in rackets
+              .col-6.col-md-4
+                +item(`/${racket.slug}.${racket._id}`, racket.imageCover, racket.name, racket.price, 10)
+            
+          // number of number page :))
+          +paginate(5)
+
+        // /col
+        aside#sidebar_fixed.col-lg-3
+          .filter_col
+            .inner_bt
+              a.open_filters(href='#')
+                i.ti-close
+            .filter_type.version_2
+              h4
+                a.opened(href='#filter_1' data-toggle='collapse') Thương hiệu
+              #filter_1.collapse.show
+                ul
+                  each brand in brands 
+                    li
+                      label.container_check
+                        | #{`${brand.name}`.toUpperCase()}
+                        input(type='checkbox' name='checkbox' data-field='brand' value= brand.name)
+                        span.checkmark
+
+            // /filter_type
+            .filter_type.version_2
+              h4
+                a.open(href='#filter_2' data-toggle='collapse') Giá sản phẩm
+              #filter_2.collapse.show
+                ul
+                  li
+                    label.container_check
+                      | Giá dưới 500.000đ
+                      input(type='checkbox' name='checkbox' data-field='price' value= '0-500000')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | 500.000đ &mdash; 1 triệu
+                      input(type='checkbox' name='checkbox' data-field='price' value= '500000-1000000')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | 1 triệu &mdash; 2 triệu
+                      input(type='checkbox' name='checkbox' data-field='price' value= '1000000-2000000')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | 2 triệu &mdash; 3 triệu
+                      input(type='checkbox' name='checkbox' data-field='price' value= '2000000-3000000')
+                      span.checkmark
+                  li
+                    label.container_check
+                      | Giá trên 3 triệu
+                      input(type='checkbox' name='checkbox' data-field='price' value= '3000000-0')
+                      span.checkmark
+            // /filter_type
+            .buttons
+              a.btn_1.filter() Lọc
+              a.btn_1.reset.gray() Chọn lại
+
+    script(src='/js/list-grid.js')

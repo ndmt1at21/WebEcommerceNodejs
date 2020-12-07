@@ -3,9 +3,13 @@ const catchAsync = require('./../ultilities/catchAsync');
 
 exports.getAllBrands = catchAsync(async (req, res, next) => {
   const brands = await Brand.find();
-  res.locals.brands = brands;
 
-  next();
+  res.status(200).json({
+    status: 'success',
+    data: {
+      brands
+    }
+  });
 });
 
 exports.createBrand = catchAsync(async (req, res, next) => {

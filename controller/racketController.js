@@ -5,6 +5,7 @@ const AppError = require('./../ultilities/appError');
 
 exports.getRackets = catchAsync(async (req, res, next) => {
   let query = Racket.find();
+  console.log(req.query);
 
   const feature = new APIFeatures(query, req.query);
   feature.filter().sort();
@@ -25,14 +26,14 @@ exports.getRackets = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getRacketDetail = catchAsync(async (req, res, next) => {
-  const racket = await Racket.findOne({ slug: req.params.slug });
+exports.getRacketByID = catchAsync(async (req, res, next) => {
+  const racket = await Racket.findById(req.params.id);
 
   if (!racket) {
     return new AppError('San pham da bi xoa hoac duong dan khong ton tai', 404);
   }
 
-  req.status(200).json({
+  res.status(200).json({
     status: 'success',
     data: {
       racket
@@ -40,8 +41,33 @@ exports.getRacketDetail = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getRacketDetail = catchAsync(async (req, res, next) => {
+  const racket = await Racket.findOne({ slug: req.params.slug });
+
+  if (!racket) {
+    return new AppError('San pham da bi xoa hoac duong dan khong ton tai', 404);
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      racket
+    }
+  });
+});
+
+exports.deleteRacketByID = catchAsync((req, res, next) => {
+  const id = req.params.id;
+  Racket.findByIdAndUpdate(id, { active: false });
+
+  res.status(200).json({
+    status: 'success'
+  });
+});
+
 // alias
 exports.aliasBestSelling = catchAsync((req, res, next) => {
+  req.query = {};
   req.sort = 'price';
   next();
 });

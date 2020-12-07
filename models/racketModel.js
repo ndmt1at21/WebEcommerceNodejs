@@ -15,7 +15,8 @@ const racketSchema = mongoose.Schema({
   },
   brand: {
     type: String,
-    required: true
+    required: true,
+    lowercase: true
   },
   category: {
     type: String,
@@ -32,7 +33,7 @@ const racketSchema = mongoose.Schema({
     type: String,
     required: true,
     lowercase: true,
-    enum: ['flex', 'medium', 'stiff', 'very stiff']
+    enum: ['flex', 'medium', 'stiff', 'verystiff']
   },
   difficulty: {
     type: String,
@@ -44,7 +45,8 @@ const racketSchema = mongoose.Schema({
     required: true
   },
   shaft: {
-    type: [String]
+    type: [String],
+    uppercase: true
   },
   length: {
     type: Number,

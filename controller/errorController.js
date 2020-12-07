@@ -3,7 +3,7 @@ const AppError = require('../ultilities/appError');
 /** @type {AppError} err */
 const sendErrorDev = (err, req, res) => {
   console.error('ERROR: ', err);
-  return res.status(err.statusCode).render('error', {
+  return res.status(err.statusCode).render('404', {
     message: err.message
   });
 };
@@ -13,7 +13,7 @@ const sendErrorProd = (err, req, res) => {
   // operational error
   if (err.isOperational === true) {
     console.error('ERROR: ', err);
-    return res.statusCode(err.statusCode).render('error', {
+    return res.statusCode(err.statusCode).render('404', {
       message: err.message
     });
   }

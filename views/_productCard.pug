@@ -1,0 +1,26 @@
+mixin productCard(urlProduct, img, rating, productName, price, priceDiscount)
+    .item
+      .grid_item
+        figure
+          a(href= urlProduct)
+            img.owl-lazy(src=`img/rackets/${img}` data-src='img/products/shoes/3.jpg' alt='')
+        .rating
+          i.icon-star.voted
+          i.icon-star.voted
+          i.icon-star.voted
+          i.icon-star.voted
+          i.icon-star
+        a(href= urlProduct)
+          h3= productName
+        .price_box
+          span.new_price= price
+          span.old_price= priceDiscount
+        ul
+          li
+            a.tooltip-1(data-toggle='tooltip' urlProduct data-placement='left' title='Thêm vào so sánh')
+              i.ti-control-shuffle(value= urlProduct)
+              span Add to compare
+          li
+            a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Thêm vào giỏ hàng')
+              i.ti-shopping-cart(value= urlProduct)
+              span Add to cart

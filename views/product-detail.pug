@@ -1,199 +1,82 @@
 extends base
 
-block content
-  header.version_1
-    .layer
-    // Mobile menu overlay mask
-    .main_header
-      .container
-        .row.small-gutters
-          .col-xl-3.col-lg-3.d-lg-flex.align-items-center
-            #logo
-              a(href='index.html')
-                img(src='img/logo.svg' alt='' width='100' height='35')
-          nav.col-xl-6.col-lg-7
-            a.open_close(href='javascript:void(0);')
-              .hamburger.hamburger--spin
-                .hamburger-box
-                  .hamburger-inner
-          .col-xl-3.col-lg-2.d-lg-flex.align-items-center.justify-content-end.text-right
-            a.phone_top(href='tel://9438843343')
-              strong
-                span Need Help?
-                | +94 423-23-221
-        // /row
-    // /main_header
-    .main_nav.Sticky
-      .container
-        .row.small-gutters
-          .col-xl-3.col-lg-3.col-md-3
-            nav.categories
-              ul.clearfix
-                li
-                  span
-                    a(href='#')
-                      span.hamburger.hamburger--spin
-                        span.hamburger-box
-                          span.hamburger-inner
-                      | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;Categories
-                  #menu
-                    ul
-                      li
-                        span
-                          a(href='#0') Collections
-                      li
-                        span
-                          a(href='#') Men
-                      li
-                        span
-                          a(href='#') Women
-                      li
-                        span
-                          a(href='#') Boys
-                      li
-                        span
-                          a(href='#') Girls
-                      li
-                        span
-                          a(href='#') Customize
-          .col-xl-6.col-lg-7.col-md-6.d-none.d-md-block
-            .custom-search-input
-              input(type='text' placeholder='Search over 10.000 products')
-              button(type='submit')
-                i.header-icon_search_custom
-          .col-xl-3.col-lg-2.col-md-3
-            ul.top_tools
-              li
-                .dropdown.dropdown-cart
-                  a.cart_bt(href='cart.html')
-                    strong 2
-                  .dropdown-menu
-                    ul
-                      li
-                        a(href='product-detail.html')
-                          figure
-                            img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/thumb/1.jpg' alt='' width='50' height='50')
-                          strong
-                            span 1x Armor Air x Fear
-                            | $90.00
-                        a.action(href='#0')
-                          i.ti-trash
-                      li
-                        a(href='product-detail.html')
-                          figure
-                            img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/thumb/2.jpg' alt='' width='50' height='50')
-                          strong
-                            span 1x Armor Okwahn II
-                            | $110.00
-                        a.action(href='0')
-                          i.ti-trash
-                    .total_drop
-                      .clearfix
-                        strong Total
-                        span $200.00
-                      a.btn_1.outline(href='cart.html') View Cart
-                      a.btn_1(href='checkout.html') Checkout
-                // /dropdown-cart
-              li
-                a.wishlist(href='#0')
-                  span Wishlist
-              li
-                .dropdown.dropdown-access
-                  a.access_link(href='account.html')
-                    span Account
-                  .dropdown-menu
-                    a.btn_1(href='account.html') Sign In or Sign Up
-                    ul
-                      li
-                        a(href='track-order.html')
-                          i.ti-truck
-                          | Track your Order
-                      li
-                        a(href='account.html')
-                          i.ti-package
-                          | My Orders
-                      li
-                        a(href='account.html')
-                          i.ti-user
-                          | My Profile
-                      li
-                        a(href='help.html')
-                          i.ti-help-alt
-                          | Help and Faq
-                // /dropdown-access
-        // /row
-      .search_mob_wp
-        input.form-control(type='text' placeholder='Search over 10.000 products')
-        input.btn_1.full-width(type='submit' value='Search')
-      // /search_mobile
-    // /main_nav
-  // /header
-  main.bg_gray
+mixin detailProperty(property, value) 
+  tr  
+    td
+      strong= property || 'N/A'
+    td= value || 'N/A'
+
+block append head
+  link(href='css/product_page.css' rel='stylesheet') 
+
+block content 
+  main
     .container.margin_30
-      .page_header
-        .breadcrumbs
-          ul
-            li
-              a(href='#') Home
-            li
-              a(href='#') Category
-            li Page active
-        h1 Armor Air X Fear
-      // /page_header
-      .row.justify-content-center
-        .col-lg-8
-          .owl-carousel.owl-theme.prod_pics.magnific-gallery
-            .item
-              a(href='img/products/shoes/product_detail_1.jpg' title='Photo title' data-effect='mfp-zoom-in')
-                img(src='img/products/shoes/product_detail_1.jpg' alt='')
-            // /item
-            .item
-              a(href='img/products/shoes/product_detail_2.jpg' title='Photo title' data-effect='mfp-zoom-in')
-                img.owl-lazy(src='img/products/product_placeholder_detail_2.jpg' data-src='img/products/shoes/product_detail_2.jpg' alt='')
-            // /item
-          // /carousel
-      // /row
-    // /container
-    .bg_white
-      .container.margin_60_35
-        .row.justify-content-between
-          .col-lg-6
-            .prod_info.version_2
-              span.rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-                em 4 reviews
-              p
-                small SKU: MTKRY-001
-                br
-                | Lorem ipsum dolor sit amet, his no adipisci pericula conclusionemque. Qui labore salutandi ex, vivendum argumentum mediocritatem vis eu, viris tritani per id. At iudicabit maluisset vis, dicant diceret pri cu. Cum at rebum vulputate forensibus, eruditi principes ad vel, pro denique recusabo at. Ubique nominavi delicata sit cu, quo no reque insolens suscipiantur.
-              p
-                | Et phaedrum temporibus per. Antiopam posidonium et est. Eu ius quas modus suavitate, ex sea feugiat laoreet voluptatum. Quo at veritus ancillae complectitur, duo no assum omnes.
-          .col-lg-5
-            .prod_options.version_2
+      .row
+        .col-md-6
+          .all
+            .slider
+              .owl-carousel.owl-theme.main
+                .item-box(style='background-image: url(img/products/shoes/1.jpg);')
+                .item-box(style='background-image: url(img/products/shoes/2.jpg);')
+                .item-box(style='background-image: url(img/products/shoes/3.jpg);')
+                .item-box(style='background-image: url(img/products/shoes/4.jpg);')
+                .item-box(style='background-image: url(img/products/shoes/5.jpg);')
+                .item-box(style='background-image: url(img/products/shoes/6.jpg);')
+              .left.nonl
+                i.ti-angle-left
+              .right
+                i.ti-angle-right
+            .slider-two
+              .owl-carousel.owl-theme.thumbs
+                .item.active(style='background-image: url(img/products/shoes/1.jpg);')
+                .item(style='background-image: url(img/products/shoes/2.jpg);')
+                .item(style='background-image: url(img/products/shoes/3.jpg);')
+                .item(style='background-image: url(img/products/shoes/4.jpg);')
+                .item(style='background-image: url(img/products/shoes/5.jpg);')
+                .item(style='background-image: url(img/products/shoes/6.jpg);')
+              .left-t.nonl-t
+              .right-t
+        .col-md-6
+          // /page_header
+          .prod_info
+            h1= racket.name
+            span.rating
+              i.icon-star.voted
+              i.icon-star.voted
+              i.icon-star.voted
+              i.icon-star.voted
+              i.icon-star
+              em 4 reviews
+            p
+              br
+              | Sed ex labitur adolescens scriptorem. Te saepe verear tibique sed. Et wisi ridens vix, lorem iudico blandit mel cu. Ex vel sint zril oportere, amet wisi aperiri te cum.
+            .prod_options
               .row
-                label.col-xl-7.col-lg-5.col-md-6.col-6
-                  strong Quantity
-                .col-xl-5.col-lg-5.col-md-6.col-6
+                label.col-xl-5.col-lg-5.col-md-6.col-6
+                  strong Số lượng
+                .col-xl-4.col-lg-5.col-md-6.col-6
                   .numbers-row
                     input#quantity_1.qty2(type='text' value='1' name='quantity_1')
-                    .inc.button_inc +
-                    .dec.button_inc -
-              .row.mt-3
-                .col-lg-7.col-md-6
-                  .price_main
-                    span.new_price $148.00
-                    span.percentage -20%
-                    span.old_price $160.00
-                .col-lg-5.col-md-6
-                  .btn_add_to_cart
-                    a.btn_1(href='#0') Add to Cart
-        // /row
-    // /bg_white
-    .tabs_product.bg_white.version_2
+            .row
+              .col-lg-5.col-md-6
+                .price_main
+                  span.new_price= `${racket.price}đ`
+                  span.percentage -20%
+                  span.old_price= racket.priceDiscount
+              .col-lg-4.col-md-6
+                a#btn-add-cart.btn_1() Thêm vào giỏ hàng
+          // /prod_info
+          .product_actions
+            ul
+              li
+                a(href='#')
+                  i.ti-control-shuffle
+                  span Add to Compare
+          // /product_actions
+      // /row
+    // /container
+    .tabs_product
       .container
         ul.nav.nav-tabs(role='tablist')
           li.nav-item
@@ -208,12 +91,12 @@ block content
             #heading-A.card-header(role='tab')
               h5.mb-0
                 a.collapsed(data-toggle='collapse' href='#collapse-A' aria-expanded='false' aria-controls='collapse-A')
-                  | Description
+                  | Mô tả
             #collapse-A.collapse(role='tabpanel' aria-labelledby='heading-A')
               .card-body
                 .row.justify-content-between
                   .col-lg-6
-                    h3 Details
+                    h3 Chi tiết
                     p
                       | Lorem ipsum dolor sit amet, in eleifend 
                       strong inimicus elaboraret
@@ -225,26 +108,12 @@ block content
                     p
                       | Perfecto eleifend sea no, cu audire voluptatibus eam. An alii praesent sit, nobis numquam principes ea eos, cu autem constituto suscipiantur eam. Ex graeci elaboraret pro. Mei te omnis tantas, nobis viderer vivendo ex has.
                   .col-lg-5
-                    h3 Specifications
+                    h3 Mô tả
                     .table-responsive
                       table.table.table-sm.table-striped
                         tbody
-                          tr
-                            td
-                              strong Color
-                            td Blue, Purple
-                          tr
-                            td
-                              strong Size
-                            td 150x100x100
-                          tr
-                            td
-                              strong Weight
-                            td 0.6kg
-                          tr
-                            td
-                              strong Manifacturer
-                            td Manifacturer
+                         each value, property in racketForShow
+                          +detailProperty(property, value)
                     // /table-responsive
           // /TAB A
           #pane-B.card.tab-pane.fade(role='tabpanel' aria-labelledby='tab-B')
@@ -255,7 +124,7 @@ block content
             #collapse-B.collapse(role='tabpanel' aria-labelledby='heading-B')
               .card-body
                 .row.justify-content-between
-                  .col-lg-5
+                  .col-lg-6
                     .review_content
                       .clearfix.add_bottom_10
                         span.rating
@@ -269,7 +138,7 @@ block content
                       h4 &quot;Commpletely satisfied&quot;
                       p
                         | Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea. Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.
-                  .col-lg-5
+                  .col-lg-6
                     .review_content
                       .clearfix.add_bottom_10
                         span.rating
@@ -285,7 +154,7 @@ block content
                         | Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.
                 // /row
                 .row.justify-content-between
-                  .col-lg-5
+                  .col-lg-6
                     .review_content
                       .clearfix.add_bottom_10
                         span.rating
@@ -299,7 +168,7 @@ block content
                       h4 &quot;Outstanding&quot;
                       p
                         | Eos tollit ancillae ea, lorem consulatu qui ne, eu eros eirmod scaevola sea. Et nec tantas accusamus salutatus, sit commodo veritus te, erat legere fabulas has ut. Rebum laudem cum ea, ius essent fuisset ut. Viderer petentium cu his.
-                  .col-lg-5
+                  .col-lg-6
                     .review_content
                       .clearfix.add_bottom_10
                         span.rating
@@ -321,393 +190,39 @@ block content
         // /tab-content
       // /container
     // /tab_content_wrapper
-    .bg_white
-      .container.margin_60_35
-        .main_title
-          h2 Related
-          span Products
-          p Cum doctus civibus efficiantur in imperdiet deterruisset.
-        .owl-carousel.owl-theme.products_carousel
-          .item
-            .grid_item
-              figure
-                a(href='product-detail-1.html')
-                  img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/4.jpg' alt='')
-              .rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-              a(href='product-detail-1.html')
-                h3 ACG React Terra
-              .price_box
-                span.new_price $110.00
-              ul
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                    i.ti-heart
-                    span Add to favorites
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                    i.ti-control-shuffle
-                    span Add to compare
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                    i.ti-shopping-cart
-                    span Add to cart
-            // /grid_item
-          // /item
-          .item
-            .grid_item
-              figure
-                a(href='product-detail-1.html')
-                  img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/5.jpg' alt='')
-              .rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-              a(href='product-detail-1.html')
-                h3 Air Zoom Alpha
-              .price_box
-                span.new_price $140.00
-              ul
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                    i.ti-heart
-                    span Add to favorites
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                    i.ti-control-shuffle
-                    span Add to compare
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                    i.ti-shopping-cart
-                    span Add to cart
-            // /grid_item
-          // /item
-          .item
-            .grid_item
-              figure
-                a(href='product-detail-1.html')
-                  img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/8.jpg' alt='')
-              .rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-              a(href='product-detail-1.html')
-                h3 Air Color 720
-              .price_box
-                span.new_price $120.00
-              ul
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                    i.ti-heart
-                    span Add to favorites
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                    i.ti-control-shuffle
-                    span Add to compare
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                    i.ti-shopping-cart
-                    span Add to cart
-            // /grid_item
-          // /item
-          .item
-            .grid_item
-              figure
-                a(href='product-detail-1.html')
-                  img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/2.jpg' alt='')
-              .rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-              a(href='product-detail-1.html')
-                h3 Okwahn II
-              .price_box
-                span.new_price $90.00
-                span.old_price $170.00
-              ul
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                    i.ti-heart
-                    span Add to favorites
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                    i.ti-control-shuffle
-                    span Add to compare
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                    i.ti-shopping-cart
-                    span Add to cart
-            // /grid_item
-          // /item
-          .item
-            .grid_item
-              span.ribbon.off -50%
-              figure
-                a(href='product-detail-1.html')
-                  img.owl-lazy(src='img/products/product_placeholder_square_medium.jpg' data-src='img/products/shoes/3.jpg' alt='')
-              .rating
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star.voted
-                i.icon-star
-              a(href='product-detail-1.html')
-                h3 Air Wildwood ACG
-              .price_box
-                span.new_price $75.00
-                span.old_price $155.00
-              ul
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to favorites')
-                    i.ti-heart
-                    span Add to favorites
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to compare')
-                    i.ti-control-shuffle
-                    span Add to compare
-                li
-                  a.tooltip-1(href='#0' data-toggle='tooltip' data-placement='left' title='Add to cart')
-                    i.ti-shopping-cart
-                    span Add to cart
-            // /grid_item
-          // /item
-        // /products_carousel
-      // /container
-    // /bg_white
-  // /main
-  footer.revealed
-    .container
-      .row
-        .col-lg-3.col-md-6
-          h3(data-target='#collapse_1') Quick Links
-          #collapse_1.collapse.dont-collapse-sm.links
-            ul
-              li
-                a(href='about.html') About us
-              li
-                a(href='help.html') Faq
-              li
-                a(href='help.html') Help
-              li
-                a(href='account.html') My account
-              li
-                a(href='blog.html') Blog
-              li
-                a(href='contacts.html') Contacts
-        .col-lg-3.col-md-6
-          h3(data-target='#collapse_2') Categories
-          #collapse_2.collapse.dont-collapse-sm.links
-            ul
-              li
-                a(href='listing-grid-1-full.html') Yonex
-              li
-                a(href='listing-grid-2-full.html') Lining
-              li
-                a(href='listing-grid-1-full.html') Furniture
-              li
-                a(href='listing-grid-3.html') Glasses
-              li
-                a(href='listing-grid-1-full.html') Shoes
-              li
-                a(href='listing-grid-1-full.html') Watches
-        .col-lg-3.col-md-6
-          h3(data-target='#collapse_3') Contacts
-          #collapse_3.collapse.dont-collapse-sm.contacts
-            ul
-              li
-                i.ti-home
-                | Linh Trung, Thu Duc
-                br
-                | HCM
-              li
-                i.ti-headphone-alt
-                | 0905 871 254
-              li
-                i.ti-email
-                a(href='#0') trminh36@gmail.com
-        .col-lg-3.col-md-6
-          h3(data-target='#collapse_4') Keep in touch
-          #collapse_4.collapse.dont-collapse-sm
-            #newsletter
-              .form-group
-                input#email_newsletter.form-control(type='email' name='email_newsletter' placeholder='Your email')
-                button#submit-newsletter(type='submit')
-                  i.ti-angle-double-right
-            .follow_us
-              h5 Follow Us
-              ul
-                li
-                  a(href='#0')
-                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/twitter_icon.svg' alt='')
-                li
-                  a(href='#0')
-                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/facebook_icon.svg' alt='')
-                li
-                  a(href='#0')
-                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/instagram_icon.svg' alt='')
-                li
-                  a(href='#0')
-                    img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/youtube_icon.svg' alt='')
-      // /row
-      hr
-      .row.add_bottom_25
-        .col-lg-6
-          ul.footer-selector.clearfix
-            li
-              img.lazy(src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' data-src='img/cards_all.svg' alt='' width='198' height='30')
-        .col-lg-6
-          ul.additional_links
-            li
-              a(href='#0') Terms and conditions
-            li
-              a(href='#0') Privacy
-            li
-              span &copy; 2020 HCMUS
-  // /footer
-// page
-#toTop
-// Back to top button
-.top_panel
-  .container.header_panel
-    a.btn_close_top_panel(href='#0')
-      i.ti-close
-    label 1 product added to cart
-  // /header_panel
-  .item
-    .container
-      .row
-        .col-md-7
-          .item_panel
-            figure
-              img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/1.jpg' alt='')
-            h4 1x Armor Air X Fear
-            .price_panel
-              span.new_price $148.00
-              span.percentage -20%
-              span.old_price $160.00
-        .col-md-5.btn_panel
-          a.btn_1.outline(href='cart.html') View cart
-          a.btn_1(href='checkout.html') Checkout
-  // /item
-  .container.related
-    h4 Who bought this product also bought
-    .row
-      .col-md-4
-        .item_panel
-          a(href='#0')
-            figure
-              img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/2.jpg' alt='')
-          a(href='#0')
-            h5 Armor Okwahn II
-          .price_panel
-            span.new_price $90.00
-      .col-md-4
-        .item_panel
-          a(href='#0')
-            figure
-              img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/3.jpg' alt='')
-          a(href='#0')
-            h5 Armor Air Wildwood ACG
-          .price_panel
-            span.new_price $75.00
-            span.percentage -20%
-            span.old_price $155.00
-      .col-md-4
-        .item_panel
-          a(href='#0')
-            figure
-              img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/4.jpg' alt='')
-          a(href='#0')
-            h5 Armor ACG React Terra
-          .price_panel
-            span.new_price $110.00
-  // /related
-// /add_cart_panel
-// Size modal
-#size-modal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='size-modal' aria-hidden='true')
-  .modal-dialog.modal-dialog-centered.modal-lg
-    .modal-content
-      .modal-header
-        h5.modal-title Size guide
-        button.close(type='button' data-dismiss='modal' aria-label='Close')
-          i.ti-close
-      .modal-body
-        p
-          | Lorem ipsum dolor sit amet, et velit propriae invenire mea, ad nam alia intellegat. Aperiam mediocrem rationibus nec te. Tation persecuti accommodare pro te. Vis et augue legere, vel labitur habemus ocurreret ex.
-        .table-responsive
-          table.table.table-striped.table-sm.sizes
-            tbody
-              tr
-                th(scope='row') US Sizes
-                td 6
-                td 6,5
-                td 7
-                td 7,5
-                td 8
-                td 8,5
-                td 9
-                td 9,5
-                td 10
-                td 10,5
-              tr
-                th(scope='row') Euro Sizes
-                td 39
-                td 39
-                td 40
-                td 40-41
-                td 41
-                td 41-42
-                td 42
-                td 42-43
-                td 43
-                td 43-44
-              tr
-                th(scope='row') UK Sizes
-                td 5,5
-                td 6
-                td 6,5
-                td 7
-                td 7,5
-                td 8
-                td 8,5
-                td 9
-                td 9,5
-                td 10
-              tr
-                th(scope='row') Inches
-                td 9.25&quot;
-                td 9.5&quot;
-                td 9.625&quot;
-                td 9.75&quot;
-                td 9.9375&quot;
-                td 10.125&quot;
-                td 10.25&quot;
-                td 10.5&quot;
-                td 10.625&quot;
-                td 10.75&quot;
-              tr
-                th(scope='row') CM
-                td 23,5
-                td 24,1
-                td 24,4
-                td 24,8
-                td 25,4
-                td 25,7
-                td 26
-                td 26,7
-                td 27
-                td 27,3
-        // /table
-// COMMON SCRIPTS
-script(src='js/common_scripts.min.js')
-script(src='js/main.js')
+    .container.margin_60_35
+      .main_title
+        h2 Related
+        span Products
+        p Cum doctus civibus efficiantur in imperdiet deterruisset.
+      .owl-carousel.owl-theme.products_carousel
+        // CARD PRODUCT
+        productCard(urlProduct, img, rating, productName, price, priceDiscount)
+     
+      // /products_carousel
+    // /container
+    .feat
+      .container
+        ul
+          li
+            .box
+              i.ti-gift
+              .justify-content-center
+                h3 Free Shipping
+                p For all oders over $99
+          li
+            .box
+              i.ti-wallet
+              .justify-content-center
+                h3 Secure Payment
+                p 100% secure payment
+          li
+            .box
+              i.ti-headphone-alt
+              .justify-content-center
+                h3 24/7 Support
+                p Online top support
+    
+  script(src='/js/common_scripts.min.js')
+  script(src='/js/carousel_with_thumbs.js')
+  script(src='/js/product-detail.js')

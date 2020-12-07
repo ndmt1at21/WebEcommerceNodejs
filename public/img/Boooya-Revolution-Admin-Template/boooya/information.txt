@@ -1,0 +1,4 @@
+PACKAGE v1.0
+- boooya
+- - build	--> compiled html/css/js
+- - dev		--> development files

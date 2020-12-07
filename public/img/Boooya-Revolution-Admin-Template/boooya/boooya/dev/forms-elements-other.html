@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>                        
+        <title>Boooya - Other Form Elements</title>            
+        
+        //= partials/meta-section.html
+        //= partials/styles-include.html
+    </head>
+    <body>        
+        
+        <!-- APP WRAPPER -->
+        <div class="app">
+            
+            <!-- START APP CONTAINER -->
+            <div class="app-container">                
+                //= partials/sidebars/default-fixed.html
+                
+                <!-- START APP CONTENT -->
+                <div class="app-content app-sidebar-left">
+                    //= partials/headers/default.html
+                    
+                    <!-- START PAGE HEADING -->
+                    <div class="app-heading app-heading-bordered app-heading-page">
+                        <div class="icon icon-lg">
+                            <span class="icon-document2"></span>
+                        </div>
+                        <div class="title">
+                            <h2>Other Elements</h2>
+                            <p>Another features that is not included in other packs</p>
+                        </div>
+                        //= partials/heading-elements.html
+                    </div>
+                    <div class="app-heading-container app-heading-bordered bottom">
+                        <ul class="breadcrumb">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Form Elements</a></li>
+                            <li class="active">Other Elements</li>
+                        </ul>
+                    </div>
+                    <!-- END PAGE HEADING -->
+                   
+                    <!-- START PAGE CONTAINER -->                    
+                    <div class="container">
+                        
+                        <!-- FILE INPUT -->
+                        <div class="block">                        
+                            
+                            <div class="app-heading app-heading-small">                                
+                                <div class="title">
+                                    <h2>File Input</h2>
+                                    <p>Custom design of file input field</p>
+                                </div>                                
+                            </div>
+                                  
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Button File Input</label>
+                                    <div class="col-md-10">
+                                        <input type="file" class="file">
+                                    </div>
+                                </div>                                
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label">Custom Button Color</label>
+                                    <div class="col-md-10">
+                                        <input type="file" class="file btn-primary" title="<span class='icon-download2'></span> Custom File Input">
+                                    </div>
+                                </div>                                
+                            </form>
+                            
+                        </div>
+                        <!-- END FILE INPUT -->
+                        
+                        <!-- BASIC INPUTS -->
+                        <div class="block">                        
+                            
+                            <div class="app-heading app-heading-small">                                
+                                <div class="title">
+                                    <h2>Spinner</h2>
+                                    <p>Input spinner function with options</p>
+                                </div>                                
+                            </div>
+                            <form class="form-horizontal">
+                                <div class="form-group">                                                                
+                                    <label class="col-md-2 control-label">Basic</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control spinner" value="5">
+                                    </div>                                    
+                                    <div class="col-md-7">
+                                        <strong>Class</strong>
+                                        <p>Add class <code>.spinner</code> to input, to get basic functionality</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">                                                                
+                                    <label class="col-md-2 control-label">Min value = 0</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control spinner" value="5" data-spinner-min="0">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <strong>Option</strong><br>
+                                        <p>Add attribute <code>data-spinner-min="0"</code> to get min value 0</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">                                                                
+                                    <label class="col-md-2 control-label">Max value = 10</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control spinner" value="5" data-spinner-max="10">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <strong>Option</strong>
+                                        <p>Add attribute <code>data-spinner-max="10"</code> to get max value 10</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">                                                                
+                                    <label class="col-md-2 control-label">Step = 5</label>
+                                    <div class="col-md-3">
+                                        <input type="text" class="form-control spinner" value="10" data-spinner-step="5">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <strong>Option</strong>
+                                        <p>Add attribute <code>data-spinner-step="5"</code> to get custom step</p>
+                                    </div>
+                                </div>                                
+                            </form>                                                        
+                        </div>
+                        <!-- END BASIC INPUTS -->                                                
+                        
+                    </div>
+                    
+                </div>
+                <!-- END APP CONTENT -->
+                                
+            </div>
+            <!-- END APP CONTAINER -->
+            
+        </div>        
+        <!-- END APP WRAPPER -->                
+        
+        //= partials/scripts-include.html
+    </body>
+</html>

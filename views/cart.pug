@@ -6,78 +6,23 @@ block content
     .container.margin_30
       .page_header
         .breadcrumbs
-          ul
-            li
-              a(href='#') Home
-            li
-              a(href='#') Category
-            li Page active
-        h1 Cart page
+        h1 Giỏ hàng
       // /page_header
       table.table.table-striped.cart-list
         thead
           tr
             th
-              | Product
+              | Sản phẩm
             th
-              | Price
+              | Giá
             th
-              | Quantity
+              | Số lượng
             th
-              | Subtotal
+              | Tổng
             th
-        tbody
-          tr
-            td
-              .thumb_cart
-                img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/1.jpg' alt='Image')
-              span.item_cart Armor Air x Fear
-            td
-              strong $140.00
-            td
-              .numbers-row
-                input#quantity_1.qty2(type='text' value='1' name='quantity_1')
-                .inc.button_inc +
-                .dec.button_inc -
-            td
-              strong $140.00
-            td.options
-              a(href='#')
-                i.ti-trash
-          tr
-            td
-              .thumb_cart
-                img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/2.jpg' alt='Image')
-              span.item_cart Armor Okwahn II
-            td
-              strong $110.00
-            td
-              .numbers-row
-                input#quantity_2.qty2(type='text' value='1' name='quantity_2')
-                .inc.button_inc +
-                .dec.button_inc -
-            td
-              strong $110.00
-            td.options
-              a(href='#')
-                i.ti-trash
-          tr
-            td
-              .thumb_cart
-                img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/3.jpg' alt='Image')
-              span.item_cart Armor Air Wildwood ACG
-            td
-              strong $90.00
-            td
-              .numbers-row
-                input#quantity_3.qty2(type='text' value='1' name='quantity_3')
-                .inc.button_inc +
-                .dec.button_inc -
-            td
-              strong $90.00
-            td.options
-              a(href='#')
-                i.ti-trash
+        tbody#cart-table
+          // content row product
+          
       .row.add_top_30.flex-sm-row-reverse.cart_actions
         .col-sm-4.text-right
           button.btn_1.gray(type='button') Update Cart
@@ -103,3 +48,5 @@ block content
                 span Total
                 |  $247.00
             a.btn_1.full-width.cart(href='cart-2.html') Proceed to Checkout
+  
+  script(src="/js/cart.js")
