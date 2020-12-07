@@ -1,0 +1,43 @@
+
+[
+    {
+        "name": "Yonex",
+        "category": ["Voltric", "Nanoray", "Arcsaber", "Duora", "Astrox", "Tour", "NanoFlare"],
+        "frame": [
+            "H.M. Graphite", 
+            "Nanomesh NEO", 
+            "SUPER HMG", 
+            "Vonfram", 
+            "Nano Metric", 
+            "Black Micro Core", 
+            "M40X", 
+            "EX-HMG",
+            "Sound Filter",
+            "REXIL FIBER"
+        ],
+        "shaft": [
+            "H.M. Graphite", 
+            "Nanomesh NEO", 
+            "Tungsten", 
+            "Namd", 
+            "EX-HMG"
+        ]
+    },
+    {
+        "name": "Lining",
+        "category": ["Tetonic", "Turbo Charging", "3D Calibar", "Aeronaut", "Lightning", "WINDSTORM"],
+        "frame": [
+            "Military Grade Carbon Fiber", 
+            "Commercial Grade Carbon Fiber",
+            "Carbon Fiber",
+            "Carbon T1100G"
+        ],
+        "shaft": [
+            "Military Grade Carbon Fiber", 
+            "Carbon T1100G",
+            "Commercial Grade Carbon Fiber",
+            "Carbon Fiber"
+        ]
+    }
+]
+   

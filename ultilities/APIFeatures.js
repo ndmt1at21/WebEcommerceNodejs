@@ -20,12 +20,9 @@ class APIFeatures {
 
     // convert to operator in mongoose
     let queryStr = JSON.stringify(newQueryObj);
-    console.log(queryStr);
     queryStr = queryStr.replace(/\b(gte|gt|lt|lte)\b/g, (match) => `$${match}`);
 
     this.query = this.query.find(JSON.parse(queryStr));
-
-    console.log(JSON.parse(queryStr));
 
     return this;
   }

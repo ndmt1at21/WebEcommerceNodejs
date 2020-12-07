@@ -5,7 +5,6 @@ const AppError = require('./../ultilities/appError');
 
 exports.getRackets = catchAsync(async (req, res, next) => {
   let query = Racket.find();
-  console.log(req.query);
 
   const feature = new APIFeatures(query, req.query);
   feature.filter().sort();
@@ -56,7 +55,17 @@ exports.getRacketDetail = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteRacketByID = catchAsync((req, res, next) => {
+exports.createRacket = catchAsync(async (req, res, next) => {
+  const racket = req.body;
+  console.log(req.body);
+  await Racket.create(racket);
+
+  res.status(200).json({
+    status: 'success'
+  });
+});
+
+exports.deleteRacketByID = catchAsync(async (req, res, next) => {
   const id = req.params.id;
   Racket.findByIdAndUpdate(id, { active: false });
 
@@ -66,7 +75,7 @@ exports.deleteRacketByID = catchAsync((req, res, next) => {
 });
 
 // alias
-exports.aliasBestSelling = catchAsync((req, res, next) => {
+exports.aliasBestSelling = catchAsync(async (req, res, next) => {
   req.query = {};
   req.sort = 'price';
   next();

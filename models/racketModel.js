@@ -76,7 +76,7 @@ const racketSchema = mongoose.Schema({
     max: 40
   },
   color: {
-    type: String
+    type: [String]
   },
   madein: {
     type: String,
@@ -135,10 +135,34 @@ racketSchema.pre('save', function (next) {
 });
 
 racketSchema.pre('save', async function (next) {
+  const brand = await Brand.find({ category: this.category });
+
+  if (!brand.length) {
+    next(new AppError('Category is not found', 400));
+  }
+});
+
+racketSchema.pre('save', async function (next) {
   const brand = await Brand.find({ name: this.brand });
 
   if (!brand.length) {
     next(new AppError('Brand is not found', 400));
+  }
+});
+
+racketSchema.pre('save', async function (next) {
+  const brand = await Brand.find({ frame: this.frame });
+
+  if (!brand.length) {
+    next(new AppError('Frame is not found', 400));
+  }
+});
+
+racketSchema.pre('save', async function (next) {
+  const brand = await Brand.find({ shaft: this.shaft });
+
+  if (!brand.length) {
+    next(new AppError('Shaft is not found', 400));
   }
 });
 
