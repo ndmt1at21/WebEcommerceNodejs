@@ -6,6 +6,7 @@ const userRouter = require('./routes/userRouter');
 const racketRouter = require('./routes/racketRouter');
 const reviewRouter = require('./routes/reviewRouter');
 const viewRouter = require('./routes/viewRouter');
+const cors = require('cors');
 
 const app = express();
 app.use(express.json());
@@ -15,6 +16,9 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// just for local test
+// it can remove error cors (http)
+app.options('*', cors());
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
@@ -40,11 +44,13 @@ app.use(function (req, res, next) {
 });
 
 app.use(express.static(`${__dirname}/public`));
-
 app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
 
-// app.use('/', viewRouter);
+// FOR VIEW
+app.use('/', viewRouter);
+
+// FOR API
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/racket', racketRouter);
 app.use('/api/v1/review', reviewRouter);

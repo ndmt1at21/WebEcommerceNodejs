@@ -28,8 +28,8 @@ class APIFeatures {
   }
 
   limit() {
-    if (this.queryReqObj.limit) {
-      this.query = this.query.limit(this.queryReqObj.limit);
+    if (this.queryReqObj.limit > 0) {
+      this.query = this.query.limit(parseInt(this.queryReqObj.limit));
     }
 
     return this;

@@ -38,6 +38,26 @@
             "Commercial Grade Carbon Fiber",
             "Carbon Fiber"
         ]
+    },
+    {
+        "name": "Victor",
+        "category": ["DriveX", "Hypernano", "JETSPEED   ", "Aeronaut", "Arrow Power", "Brave Sword"],
+        "frame": [
+            "Graphite", 
+            "Resin",
+            "High Resilient Modulus Graphite",
+            "Nano Fortify",
+            "Nano Resin",
+            "Ultra High Modulus Graphite"
+        ],
+        "shaft": [
+            "Graphite", 
+            "Resin",
+            "7.0 SHAFT",
+            "High Resilient Modulus Graphit",
+            "PYROFI",
+            "6.8 SHAFT"
+        ]
     }
 ]
    

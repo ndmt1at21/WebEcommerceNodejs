@@ -23,7 +23,7 @@ const brandSchema = mongoose.Schema({
       trim: true,
       lowercase: true,
       minlength: 2,
-      maxlength: 30
+      maxlength: 50
     }
   ],
   shaft: [
@@ -32,7 +32,7 @@ const brandSchema = mongoose.Schema({
       trim: true,
       lowercase: true,
       minlength: 2,
-      maxlength: 30
+      maxlength: 50
     }
   ]
 });

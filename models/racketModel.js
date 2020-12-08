@@ -21,7 +21,8 @@ const racketSchema = mongoose.Schema({
   category: {
     type: String,
     required: [true, 'A racket must in a category'],
-    trim: true
+    trim: true,
+    lowercase: true
   },
   itemCode: {
     type: String,
@@ -40,14 +41,8 @@ const racketSchema = mongoose.Schema({
     lowercase: true,
     enum: ['normal', 'medium', 'advanced']
   },
-  frame: {
-    type: [String],
-    required: true
-  },
-  shaft: {
-    type: [String],
-    uppercase: true
-  },
+  frame: [{ type: String, required: true, lowercase: true }],
+  shaft: [{ type: String, required: true, lowercase: true }],
   length: {
     type: Number,
     required: true,
@@ -129,13 +124,20 @@ const racketSchema = mongoose.Schema({
 
 racketSchema.plugin(mongoosePaginate);
 
+racketSchema.pre(/^find/, function (next) {
+  this.find({ active: { $ne: false } });
+  next();
+});
+
 racketSchema.pre('save', function (next) {
   this.slug = slugify(this.name, { lower: true });
   next();
 });
 
 racketSchema.pre('save', async function (next) {
-  const brand = await Brand.find({ category: this.category });
+  const brand = await Brand.find({
+    category: this.category
+  });
 
   if (!brand.length) {
     next(new AppError('Category is not found', 400));
@@ -151,16 +153,25 @@ racketSchema.pre('save', async function (next) {
 });
 
 racketSchema.pre('save', async function (next) {
-  const brand = await Brand.find({ frame: this.frame });
+  let query = Brand.find();
+  this.frame.forEach((el) => {
+    query = query.find({ frame: el });
+  });
 
+  const brand = await query;
   if (!brand.length) {
     next(new AppError('Frame is not found', 400));
   }
+  next();
 });
 
 racketSchema.pre('save', async function (next) {
-  const brand = await Brand.find({ shaft: this.shaft });
+  let query = Brand.find();
+  this.shaft.forEach((el) => {
+    query = query.find({ shaft: el });
+  });
 
+  const brand = await query;
   if (!brand.length) {
     next(new AppError('Shaft is not found', 400));
   }

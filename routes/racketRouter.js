@@ -9,8 +9,12 @@ const router = express.Router();
 router.get('/', racketController.getRackets);
 router.get('/brand', brandController.getAllBrands);
 router.get('/:id', racketController.getRacketByID);
-router.get('/:slug', racketController.getRacketDetail);
-router.post('/', racketController.createRacket);
+// router.get('/:slug', racketController.getRacketDetail);
+router.post(
+  '/',
+  racketController.uploadRacketPhotos,
+  racketController.createRacket
+);
 router.delete('/:id', racketController.deleteRacketByID);
 
 // alias

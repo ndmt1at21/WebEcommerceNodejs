@@ -97,9 +97,9 @@ userSchema.methods.createPasswordResetToken = function () {
   const tokenPlain = crypto.randomBytes(32).toString('hex');
   const tokenEncrypt = crypto
     .createHash('sha256')
-    .update(randStr)
+    .update(tokenPlain)
     .digest('hex');
-
+  //////
   this.passwordResetToken = tokenEncypt;
   this.passwordResetTokenExpired = Date.now() + 10 * 60 * 1000; // 10min;
 
