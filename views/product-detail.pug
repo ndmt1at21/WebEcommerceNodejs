@@ -49,8 +49,8 @@ block content
               i.icon-star
               em 4 reviews
             p
-              br
-              | Sed ex labitur adolescens scriptorem. Te saepe verear tibique sed. Et wisi ridens vix, lorem iudico blandit mel cu. Ex vel sint zril oportere, amet wisi aperiri te cum.
+              br 
+              | #{racket.desciption}
             .prod_options
               .row
                 label.col-xl-5.col-lg-5.col-md-6.col-6
@@ -61,18 +61,21 @@ block content
             .row
               .col-lg-5.col-md-6
                 .price_main
-                  span.new_price= `${racket.price}đ`
+                - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
+                - priceFormat = formatter.format(racket.price)
+                - priceDiscountFormat = formatter.format(racket.priceDiscount)
+                  span.new_price= priceFormat
                   span.percentage -20%
-                  span.old_price= racket.priceDiscount
+                  span.old_price= priceDiscountFormat
               .col-lg-4.col-md-6
-                a#btn-add-cart.btn_1() Thêm vào giỏ hàng
+                a#btn-add-cart.btn_1 Thêm vào giỏ hàng
           // /prod_info
           .product_actions
             ul
               li
                 a(href='#')
                   i.ti-control-shuffle
-                  span Add to Compare
+                  span Thêm để so sánh
           // /product_actions
       // /row
     // /container
@@ -80,9 +83,9 @@ block content
       .container
         ul.nav.nav-tabs(role='tablist')
           li.nav-item
-            a#tab-A.nav-link.active(href='#pane-A' data-toggle='tab' role='tab') Description
+            a#tab-A.nav-link.active(href='#pane-A' data-toggle='tab' role='tab') Mô tả
           li.nav-item
-            a#tab-B.nav-link(href='#pane-B' data-toggle='tab' role='tab') Reviews
+            a#tab-B.nav-link(href='#pane-B' data-toggle='tab' role='tab') Đánh giá
     // /tabs_product
     .tab_content_wrapper
       .container
@@ -200,28 +203,6 @@ block content
         productCard(urlProduct, img, rating, productName, price, priceDiscount)
      
       // /products_carousel
-    // /container
-    .feat
-      .container
-        ul
-          li
-            .box
-              i.ti-gift
-              .justify-content-center
-                h3 Free Shipping
-                p For all oders over $99
-          li
-            .box
-              i.ti-wallet
-              .justify-content-center
-                h3 Secure Payment
-                p 100% secure payment
-          li
-            .box
-              i.ti-headphone-alt
-              .justify-content-center
-                h3 24/7 Support
-                p Online top support
     
   script(src='/js/common_scripts.min.js')
   script(src='/js/carousel_with_thumbs.js')

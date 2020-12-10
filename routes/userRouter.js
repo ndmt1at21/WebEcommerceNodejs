@@ -21,10 +21,10 @@ router.use(authController.protect);
 //   .get(userController.getManyUsers)
 //   .post(userController.createUser);
 
-// router
-//   .route('/:id')
-//   .get(userController.getUser)
-//   .patch(userController.updateUser)
-//   .delete(userController.deleteUser);
+router
+  .route('/:id')
+  .get(userController.getUserByID)
+  .patch(userController.updateUser)
+  .delete(userController.deleteUser);
 
 module.exports = router;

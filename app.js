@@ -47,10 +47,10 @@ app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');
 app.set('views', `${__dirname}/views`);
 
-// FOR VIEW
+// FOR VIEW (SERVER RENDER) (uncomment for test render)
 app.use('/', viewRouter);
 
-// FOR API
+// FOR API (CLIENT RENDER) (uncomment for test api)
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/racket', racketRouter);
 app.use('/api/v1/review', reviewRouter);

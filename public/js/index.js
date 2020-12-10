@@ -1,11 +1,25 @@
 import '@babel/polyfill';
 import { login, reset } from './login';
-import { rowProductHtml, fetchData } from './cart';
+import { updateCartTable } from './cart';
 
+/////////////////////////////////////////////////
+// SELECTOR
+const seachForm = document.querySelector('.custom-search-input');
 const loginForm = document.querySelector('.form_container');
-const cartTable = document.getElementById('cart-table');
+const tableCartBody = document.querySelector('#cart-table > tbody');
+
+if (seachForm) {
+  seachForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    let query = `/search/?keyword=${seachForm.firstChild.value}`;
+    window.location.href = query;
+  });
+}
 
 if (loginForm)
+  /////////////////////////////////////////////////
+  // PROCESSING
   loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('email').value;
@@ -16,13 +30,6 @@ if (loginForm)
     else login(email, password);
   });
 
-if (cartTable) {
-  const productsInCart = JSON.parse(localStorage.getItem('cart'));
-
-  for (const id in productsInCart) {
-    
-    cartTable.insertAdjacentHTML(
-      'beforeend',
-    );
-  }
+if (tableCartBody) {
+  updateCartTable(tableCartBody);
 }

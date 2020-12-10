@@ -177,6 +177,8 @@ racketSchema.pre('save', async function (next) {
   }
 });
 
+racketSchema.index({ name: 'text' });
+
 racketSchema.virtual('weightAvg').get(function () {
   switch (this.weight) {
     case 2:

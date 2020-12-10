@@ -5,6 +5,7 @@ const AppError = require('./../ultilities/appError');
 const crypto = require('crypto');
 
 const multer = require('multer');
+const { paginate } = require('./../models/racketModel');
 
 // errro when upload > 5 files (default)
 const diskStorage = multer.diskStorage({
@@ -50,18 +51,18 @@ exports.getRackets = catchAsync(async (req, res, next) => {
   const feature = new APIFeatures(query, req.query);
   feature.filter().sort().limit();
 
-  const optionPaging = {
-    page: req.query.page >= 1 ? req.query.paage : 1,
+  const option = {
+    page: req.query.page > 0 ? req.query.page : 1,
     limit: req.query.limit
   };
 
-  Racket.paginate(query, optionPaging).then((paginateRes) => {
-    res.status(200).json({
-      status: 'success',
-      data: {
-        rackets: paginateRes.docs
-      }
-    });
+  const rackets = await query;
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      rackets
+    }
   });
 });
 

@@ -3,7 +3,6 @@ const User = require('./../models/racketModel');
 const catchAsync = require('./../ultilities/catchAsync');
 const APIFeatures = require('./../ultilities/APIFeatures');
 const getRacketForShow = require('./../ultilities/getRacketForShow');
-const { paginate } = require('./../models/racketModel');
 const AppError = require('./../ultilities/appError');
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -78,7 +77,6 @@ exports.getRacketDetail = catchAsync(async (req, res, next) => {
   const racket = await Racket.findById(id);
   const racketForShow = getRacketForShow(racket);
 
-  console.log(racketForShow);
   res.status(200).render('product-detail', {
     title: `TTShop | ${racket.name}`,
     racketForShow,
@@ -102,40 +100,10 @@ exports.getCart = catchAsync(async (req, res, next) => {
   });
 });
 
-const parsePriceStr = (priceStr) => {
-  if (priceStr.includes('-')) {
-    let [min, max] = priceStr.split('-');
-
-    let price = [];
-    if (max == 0) {
-      price = {
-        gte: min
-      };
-    } else {
-      price = {
-        gte: min,
-        lte: max
-      };
-    }
-    return price;
-  }
-};
-exports.parsePrice = catchAsync(async (req, res, next) => {
-  if (Array.isArray(req.query.price)) {
-    let priceConvert = [];
-
-    req.query.price.forEach((el) => {
-      if (el.includes('-')) {
-        const price = parsePriceStr(el);
-        priceConvert = { ...priceConvert, ...price };
-      }
-    });
-
-    req.query.price = priceConvert;
-  } else if (req.query.price) {
-    req.query.price = parsePriceStr(req.query.price);
-  }
-  next();
+exports.getCheckout = catchAsync(async (req, res, next) => {
+  res.status(200).render('checkout', {
+    title: 'Thanh toán sản phẩm'
+  });
 });
 
 exports.getFilter = catchAsync(async (req, res, next) => {
@@ -143,9 +111,9 @@ exports.getFilter = catchAsync(async (req, res, next) => {
   const feature = new APIFeatures(query, req.query);
   feature.filter().sort();
 
-  User.paginate(query, {
+  Racket.paginate(query, {
     page: req.query.page >= 1 ? req.query.page : 1,
-    limit: 9
+    limit: 2
   })
     .then((result) => {
       res.status(200).render('list-grid', {
@@ -159,8 +127,6 @@ exports.getFilter = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.getSearch = catchAsync(async (req, res, next) => {});
-
 exports.checkout = catchAsync(async (req, res, next) => {
   res.status(200).render('checkout', {
     title: 'Thanh toán'
@@ -168,8 +134,26 @@ exports.checkout = catchAsync(async (req, res, next) => {
 });
 
 exports.getAbout = catchAsync(async (req, res, next) => {
-  console.log('dsfjdjjhn');
   res.status(200).render('about', {
     title: 'TTShop - Về chúng tôi'
   });
+});
+
+exports.getSearch = catchAsync(async (req, res, next) => {
+  const query = Racket.find({ $text: { $search: req.query.keyword } });
+
+  Racket.paginate(query, {
+    limit: 9,
+    page: req.query.page || 1
+  })
+    .then((result) => {
+      res.status(200).render('list-grid', {
+        title: `Kết quả tìm kiếm cho từ  khoá ${req.query.keyword || ''}`,
+        paginateRes: result,
+        rackets: result.docs
+      });
+    })
+    .catch((err) => {
+      return next(new AppError('Page not found', 404));
+    });
 });

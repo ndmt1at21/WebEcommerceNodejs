@@ -6,21 +6,24 @@ mixin item(url, img, productName, price, priceDiscount)
   .grid_item
     figure
       a(href= url)
-        img.img-fluid.lazy(src=`img/rackets/${img}` data-src='img/products/shoes/1.jpg' alt='')
+        img.img-fluid.lazy(src=`/img/rackets/${img}` data-src='/img/products/shoes/1.jpg' alt='')
     a(href= url)
       h3= productName
     .price_box
-      span.new_price= `${price}đ`
-      span.old_price= `${priceDiscount}đ`
+      - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
+      - priceFormat = formatter.format(price)
+      - priceDiscountFormat = formatter.format(priceDiscount)
+      span.new_price= priceFormat
+      span.old_price= priceDiscountFormat
     ul
       li
         a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to compare')
           i.ti-control-shuffle(value= url)
-          span Add to compare
+          span Thêm để so sánh
       li
         a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to cart')
           i.ti-shopping-cart(value= url)
-          span Add to cart
+          span Thêm vào giỏ hàng
 
 
 block append head
@@ -35,7 +38,7 @@ block content
             .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.3)')
               .container.pl-lg-5
                 h1 Vợt cầu lông - Grid listing
-            img.img-fluid(src='img/bg_cat_shoes.jpg' alt='')
+            img.img-fluid(src='/img/bg_cat_shoes.jpg' alt='')
          
           // /top_banner
           #stick_here
@@ -113,9 +116,5 @@ block content
                       | Giá trên 3 triệu
                       input(type='checkbox' name='checkbox' data-field='price' value= '3000000-0')
                       span.checkmark
-            // /filter_type
-            .buttons
-              a.btn_1.filter() Lọc
-              a.btn_1.reset.gray() Chọn lại
 
     script(src='/js/list-grid.js')

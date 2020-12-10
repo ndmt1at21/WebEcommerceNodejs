@@ -1,10 +1,10 @@
 mixin buttonPageActive(link, page)
   li
-    a.active(href= link)= page
+    a.active(href="" value=link)= page
 
 mixin buttonPage(link, page)
   li
-    a(href= link)= page
+    a(href="" value=link)= page
 
 mixin paginate(maxPageShow)
   .pagination__wrapper
@@ -17,7 +17,7 @@ mixin paginate(maxPageShow)
         // check has prev button
         if paginateRes.hasPrevPage
           li
-            a.prev(href=`${paginateRes.page - 1}` title='previous page') &#x276E;
+            a.prev(href="" value=`${paginateRes.page - 1}` title='previous page') &#x276E;
 
         // paging wrap
         - var startPage = 0
@@ -32,7 +32,7 @@ mixin paginate(maxPageShow)
           - var n = 0
           - var pages = new Array(maxPageShow)
             each val, index in pages
-              - var link = `?page=${startPage + index}`
+              - var link = `${startPage + index}`
                 if startPage + index == paginateRes.page
                   +buttonPageActive(link, startPage + index)
                 else 
@@ -41,4 +41,4 @@ mixin paginate(maxPageShow)
         // check has next button
         if paginateRes.hasNextPage
           li
-            a.next(href=`?page=${paginateRes.page + 1}` title='next page') &#x276F;
+            a.next(href="" value=`${paginateRes.page + 1}` title='next page') &#x276F;

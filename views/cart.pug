@@ -1,5 +1,7 @@
 extends base
 
+block append head 
+  link(href="/css/cart.css" rel="stylesheet")
 block content
   header.version_1
   main.bg_gray
@@ -8,7 +10,7 @@ block content
         .breadcrumbs
         h1 Giỏ hàng
       // /page_header
-      table.table.table-striped.cart-list
+      table#cart-table.table.table-striped.cart-list
         thead
           tr
             th
@@ -20,17 +22,15 @@ block content
             th
               | Tổng
             th
-        tbody#cart-table
+        tbody
           // content row product
           
       .row.add_top_30.flex-sm-row-reverse.cart_actions
-        .col-sm-4.text-right
-          button.btn_1.gray(type='button') Update Cart
-        .col-sm-8
+        .col-sm-12
           .apply-coupon
             .form-group.form-inline
-              input.form-control(type='text' name='coupon-code' value='' placeholder='Promo code')
-              button.btn_1.outline(type='button') Apply Coupon
+              input.form-control(type='number' name='coupon-code' value='' placeholder='Promo code')
+              button.btn_1.outline(type='button') Mã khuyến mãi
       // /cart_actions
     // /container
     .box_cart
@@ -39,14 +39,15 @@ block content
           .col-xl-4.col-lg-4.col-md-6
             ul
               li
-                span Subtotal
+                span Tổng tiền sản phẩm
                 |  $240.00
               li
-                span Shipping
+                span Phí vận chuyển
                 |  $7.00
               li
-                span Total
+                span Tổng cộng
                 |  $247.00
-            a.btn_1.full-width.cart(href='cart-2.html') Proceed to Checkout
-  
-  script(src="/js/cart.js")
+            a.btn_1.full-width.cart(href='/checkout') Tiến hành đặt hàng
+
+  script(src="/js/common_scripts.min.js")
+  script(src="/js/main.js")
