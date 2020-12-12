@@ -2,10 +2,10 @@ const Racket = require('./../models/racketModel');
 const APIFeatures = require('./../ultilities/APIFeatures');
 const catchAsync = require('./../ultilities/catchAsync');
 const AppError = require('./../ultilities/appError');
+const factory = require('./../controller/handlerFactory');
 const crypto = require('crypto');
 
 const multer = require('multer');
-const { paginate } = require('./../models/racketModel');
 
 // errro when upload > 5 files (default)
 const diskStorage = multer.diskStorage({
@@ -51,19 +51,21 @@ exports.getRackets = catchAsync(async (req, res, next) => {
   const feature = new APIFeatures(query, req.query);
   feature.filter().sort().limit();
 
-  const option = {
-    page: req.query.page > 0 ? req.query.page : 1,
-    limit: req.query.limit
-  };
+  Racket.paginate(query, {
+    page: req.query.page > 0 ? req.query.page : 1
+  })
+    .then((result) => {
+      res.setHeader('X-Paging-Count', `${result.totalPages}`);
+      res.setHeader('X-Paging-Current', `${result.page}`);
 
-  const rackets = await query;
-
-  res.status(200).json({
-    status: 'success',
-    data: {
-      rackets
-    }
-  });
+      res.status(200).json({
+        status: 'success',
+        data: {
+          rackets: result.docs
+        }
+      });
+    })
+    .catch((err) => console.log(err));
 });
 
 exports.getRacketByID = catchAsync(async (req, res, next) => {
@@ -106,7 +108,7 @@ exports.createRacket = catchAsync(async (req, res, next) => {
   if (req.files.images) {
     racket.images = req.files.images.map((el) => el.filename);
   }
-  console.log(req.files.images);
+
   await Racket.create(racket);
 
   res.status(200).json({
@@ -114,14 +116,7 @@ exports.createRacket = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deleteRacketByID = catchAsync(async (req, res, next) => {
-  const id = req.params.id;
-  await Racket.findByIdAndUpdate(id, { active: false });
-
-  res.status(200).json({
-    status: 'success'
-  });
-});
+exports.deleteRacketByID = factory.deleteOne(Racket);
 
 // alias
 exports.aliasBestSelling = catchAsync(async (req, res, next) => {

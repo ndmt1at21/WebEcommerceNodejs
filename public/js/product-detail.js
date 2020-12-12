@@ -1,6 +1,13 @@
+////////////////////////////////////
+//// SELECTOR
 const addToCartBtn = document.getElementById('btn-add-cart');
 const quantityCart = document.getElementById('quantity_1');
+const rowReview1 = document.getElementById('row_review_1');
+const rowReview2 = document.getElementById('row_review_2');
+const pagination = document.querySelector('.pagination');
 
+////////////////////////////////////////
+//// PRCESSING
 if (addToCartBtn) {
   addToCartBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -10,5 +17,13 @@ if (addToCartBtn) {
     let quantity = 1;
     if (quantityCart) quantity = quantityCart.value;
     localStorage.setItem(id, quantity);
+  });
+}
+
+if (pagination) {
+  pagination.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    window.location.href = `?page=${e.target.getAttribute('value')}`;
   });
 }

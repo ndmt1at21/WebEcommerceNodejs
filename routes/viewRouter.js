@@ -13,25 +13,32 @@ router.use(brandNameForHeader);
 // ALIAS
 router.get(
   '/vot-cau-long',
+  authController.isLoggedIn,
   aliasController.aliasRacket,
   viewController.getFilter
 );
 
 router.get(
-  '/vot-cau-long-:brand',
+  '/vot-cau-long-:brand.cat',
+  authController.isLoggedIn,
   aliasController.aliasRacketWithBrand,
   viewController.getFilter
 );
 
 // NORMAL VIEW
-router.get('/', viewController.getOverview);
-router.get('/login', viewController.getLogin);
-router.get('/cart', viewController.getCart);
-router.get('/checkout', viewController.getCheckout);
-router.get('/search', viewController.getSearch);
-router.get('/filter', viewController.getFilter);
-router.get('/about', viewController.getAbout);
-router.get('/search', viewController.getSearch);
-router.get('/:slugWithID', viewController.getRacketDetail);
+router.get('/', authController.isLoggedIn, viewController.getOverview);
+router.get('/login', authController.isLoggedIn, viewController.getLogin);
+router.get('/cart', authController.isLoggedIn, viewController.getCart);
+router.get('/checkout', authController.isLoggedIn, viewController.getCheckout);
+router.get('/filter', authController.isLoggedIn, viewController.getFilter);
+router.get('/about', authController.isLoggedIn, viewController.getAbout);
+router.get('/search', authController.isLoggedIn, viewController.getSearch);
+router.get('/:slugWithID/leave-review', viewController.getLeaveReview);
+
+router.get(
+  '/:slugWithID',
+  authController.isLoggedIn,
+  viewController.getRacketDetail
+);
 
 module.exports = router;

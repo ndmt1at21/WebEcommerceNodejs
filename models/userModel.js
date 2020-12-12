@@ -6,12 +6,19 @@ const crypto = require('crypto');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    trim: true,
     required: [true, 'Please tell us your name!']
+  },
+  lastName: {
+    type: String,
+    trim: true,
+    required: [true, 'Please tell us your last name!']
   },
   email: {
     type: String,
     required: [true, 'Please provide your email'],
     unique: true,
+    trim: true,
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
@@ -26,6 +33,11 @@ const userSchema = new mongoose.Schema({
       },
       message: 'Please provide a valid email'
     }
+  },
+  address: {
+    type: String,
+    trim: true,
+    maxlength: 200
   },
   photo: {
     type: String,

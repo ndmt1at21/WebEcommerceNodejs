@@ -2,28 +2,31 @@ extends base
 include _productCard
 include _paginate
 
-mixin item(url, img, productName, price, priceDiscount) 
+mixin item(racket) 
   .grid_item
-    figure
+    - url= `/${racket.slug}.${racket._id}`
+      figure
+        a(href= url)
+          img.img-fluid.lazy(src=`/img/rackets/${racket.imageCover}` data-src='/img/products/shoes/1.jpg' alt= racket.slug)
       a(href= url)
-        img.img-fluid.lazy(src=`/img/rackets/${img}` data-src='/img/products/shoes/1.jpg' alt='')
-    a(href= url)
-      h3= productName
-    .price_box
-      - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
-      - priceFormat = formatter.format(price)
-      - priceDiscountFormat = formatter.format(priceDiscount)
-      span.new_price= priceFormat
-      span.old_price= priceDiscountFormat
-    ul
-      li
-        a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to compare')
-          i.ti-control-shuffle(value= url)
-          span Thêm để so sánh
-      li
-        a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to cart')
-          i.ti-shopping-cart(value= url)
-          span Thêm vào giỏ hàng
+        h3= racket.name
+      .price_box
+        - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
+        - priceFormat = formatter.format(racket.price)
+        - priceDiscountFormat = formatter.format(racket.priceDiscount)
+        span.new_price= priceFormat
+
+        if racket.priceDiscount
+          span.old_price= priceDiscountFormat
+      ul
+        li
+          a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to compare')
+            i.ti-control-shuffle(value= racket._id)
+            span Thêm để so sánh
+        li
+          a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Add to cart')
+            i.ti-shopping-cart(value= racket._id)
+            span Thêm vào giỏ hàng
 
 
 block append head
@@ -37,7 +40,8 @@ block content
           .top_banner
             .opacity-mask.d-flex.align-items-center(data-opacity-mask='rgba(0, 0, 0, 0.3)')
               .container.pl-lg-5
-                h1 Vợt cầu lông - Grid listing
+                // header page
+                h1= headerPage
             img.img-fluid(src='/img/bg_cat_shoes.jpg' alt='')
          
           // /top_banner
@@ -62,7 +66,7 @@ block content
           .row.small-gutters
             each racket in rackets
               .col-6.col-md-4
-                +item(`/${racket.slug}.${racket._id}`, racket.imageCover, racket.name, racket.price, 10)
+                +item(racket)
             
           // number of number page :))
           +paginate(5)

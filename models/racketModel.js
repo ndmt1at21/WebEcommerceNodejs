@@ -119,10 +119,24 @@ const racketSchema = mongoose.Schema({
     default: 0,
     select: false
   },
+  rating: {
+    type: Number,
+    default: 5,
+    // set when value this field change
+    set: (value) => Math.round(value * 10) / 10
+  },
+  ratingQuantity: {
+    type: Number,
+    default: 0
+  },
   slug: String
 });
 
 racketSchema.plugin(mongoosePaginate);
+
+racketSchema.index({ name: 'text' });
+racketSchema.index({ price: 1, rating: -1 });
+racketSchema.index('slug');
 
 racketSchema.pre(/^find/, function (next) {
   this.find({ active: { $ne: false } });
@@ -176,8 +190,6 @@ racketSchema.pre('save', async function (next) {
     next(new AppError('Shaft is not found', 400));
   }
 });
-
-racketSchema.index({ name: 'text' });
 
 racketSchema.virtual('weightAvg').get(function () {
   switch (this.weight) {

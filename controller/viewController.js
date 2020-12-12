@@ -1,5 +1,6 @@
 const Racket = require('./../models/racketModel');
 const User = require('./../models/racketModel');
+const Review = require('./../models/reviewModel');
 const catchAsync = require('./../ultilities/catchAsync');
 const APIFeatures = require('./../ultilities/APIFeatures');
 const getRacketForShow = require('./../ultilities/getRacketForShow');
@@ -72,16 +73,34 @@ exports.getOverview = catchAsync(async (req, res, next) => {
 
 exports.getRacketDetail = catchAsync(async (req, res, next) => {
   const slugWithID = req.params.slugWithID;
-  const id = slugWithID.slice(slugWithID.lastIndexOf('.') + 1);
+  const id = slugWithID.split('.')[1];
 
+  // racket
   const racket = await Racket.findById(id);
   const racketForShow = getRacketForShow(racket);
 
-  res.status(200).render('product-detail', {
-    title: `TTShop | ${racket.name}`,
-    racketForShow,
-    racket
-  });
+  // racket related
+  const racketsRelated = await Racket.find({
+    $text: { $search: racket.brand }
+  }).limit(10);
+
+  // Paginate
+  const reviewsQuery = Racket.find({ racket: id });
+  Review.paginate(reviewsQuery, {
+    page: req.query.page || 1,
+    limit: 4
+  })
+    .then((result) => {
+      res.status(200).render('product-detail', {
+        title: `TTShop | ${racket.name}`,
+        racketForShow,
+        racket,
+        racketsRelated,
+        reviews: result.docs,
+        paginateRes: result
+      });
+    })
+    .catch((err) => console.log(err));
 });
 
 exports.getLogin = catchAsync(async (req, res, next) => {
@@ -101,6 +120,10 @@ exports.getCart = catchAsync(async (req, res, next) => {
 });
 
 exports.getCheckout = catchAsync(async (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/login');
+  }
+
   res.status(200).render('checkout', {
     title: 'Thanh toán sản phẩm'
   });
@@ -118,6 +141,7 @@ exports.getFilter = catchAsync(async (req, res, next) => {
     .then((result) => {
       res.status(200).render('list-grid', {
         title: req.title,
+        headerPage: req.headerPage,
         paginateRes: result,
         rackets: result.docs
       });
@@ -142,13 +166,15 @@ exports.getAbout = catchAsync(async (req, res, next) => {
 exports.getSearch = catchAsync(async (req, res, next) => {
   const query = Racket.find({ $text: { $search: req.query.keyword } });
 
+  // limit for test
   Racket.paginate(query, {
-    limit: 9,
+    limit: 2,
     page: req.query.page || 1
   })
     .then((result) => {
       res.status(200).render('list-grid', {
         title: `Kết quả tìm kiếm cho từ  khoá ${req.query.keyword || ''}`,
+        headerPage: `Kết quả tìm kiếm (${result.docs.length} sản phẩm) `,
         paginateRes: result,
         rackets: result.docs
       });
@@ -156,4 +182,16 @@ exports.getSearch = catchAsync(async (req, res, next) => {
     .catch((err) => {
       return next(new AppError('Page not found', 404));
     });
+});
+
+exports.getLeaveReview = catchAsync(async (req, res, next) => {
+  // if (!req.user) res.redirect('/login');
+  const racket = await Racket.findById(req.params.slugWithID.split('.')[1]);
+
+  if (!racket) return AppError('Page not found', 404);
+
+  res.status(200).render('leave-review', {
+    title: `Nhận xét về sản phẩm ${racket.name}'`,
+    racket
+  });
 });

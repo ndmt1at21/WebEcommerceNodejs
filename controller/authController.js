@@ -4,51 +4,60 @@ const jwt = require('jsonwebtoken');
 const AppError = require('./../ultilities/appError');
 const util = require('util');
 const nodemailer = require('nodemailer');
-const { getMaxListeners } = require('../app');
+
+const signSendJWT = (user, res) => {
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRE_IN
+  });
+
+  res.cookie('jwt', token, {
+    expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 60),
+    httpOnly: true
+  });
+
+  res.status(200).json({
+    status: 'success',
+    token,
+    data: {
+      user
+    }
+  });
+};
 
 exports.signup = catchAsync(async (req, res, next) => {
+  console.log(req.body);
   const user = await User.create({
     name: req.body.name,
+    lastName: req.body.lastName,
     phone: req.body.phone,
+    address: req.body.address,
     password: req.body.password,
     passwordConfirm: req.body.password,
     email: req.body.email
   });
 
-  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE_IN
-  });
-
-  res.status(200).json({
-    user,
-    token
-  });
-
+  signSendJWT(user, res);
   next();
 });
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
+  // Check email, password is empty?
   if (!email || !password) {
     return next(new AppError('Please input email and password', 401));
   }
 
+  // Find user in database
   const user = await User.findOne({ email }).select('+password');
 
+  // Check input password and user's password
   if (!user || !(await user.checkCorrectPassword(password, user.password))) {
     return next(new AppError('Incorrect user or password'));
   }
 
-  const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE_IN
-  });
-
-  console.log(token);
-  res.status(200).json({
-    status: 'success',
-    token
-  });
+  // Create JWT token and send to user
+  signSendJWT(user, res);
 });
 
 exports.logout = catchAsync(async (req, res, next) => {});
@@ -61,7 +70,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Beaber')
   ) {
     token = req.headers.authorization.split(' ')[1];
-    console.log(token);
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
   // auth token

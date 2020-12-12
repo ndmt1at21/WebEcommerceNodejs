@@ -1,26 +1,34 @@
-mixin productCard(urlProduct, img, rating, productName, price, priceDiscount)
+mixin productCard(racket)
     .item
       .grid_item
         figure
-          a(href= urlProduct)
-            img.owl-lazy(src=`img/rackets/${img}` data-src='img/products/shoes/3.jpg' alt='')
+          a(href= `/${racket.slug}.${racket._id}`)
+            img.owl-lazy(src=`img/rackets/${racket.imageCover}` data-src='img/products/shoes/3.jpg' alt= racket.slug)
         .rating
-          i.icon-star.voted
-          i.icon-star.voted
-          i.icon-star.voted
-          i.icon-star.voted
-          i.icon-star
-        a(href= urlProduct)
-          h3= productName
+          - arr = [1,2,3,4,5]
+            each i in arr 
+              if i <= racket.rating 
+                i.icon-star.voted
+              else 
+                i.icon-star 
+            i= `${racket.rating} (${racket.ratingQuantity})`
+        
+        a(href= `/${racket.slug}.${racket._id}`)
+          h3= racket.name
         .price_box
-          span.new_price= price
-          span.old_price= priceDiscount
+          - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
+          - priceFormat = formatter.format(racket.price)
+          - priceDiscountFormat = formatter.format(racket.priceDiscount)
+          span.new_price= priceFormat
+          
+          if racket.priceDiscount
+            span.old_price= priceDiscountFormat
         ul
           li
             a.tooltip-1(data-toggle='tooltip' urlProduct data-placement='left' title='Thêm vào so sánh')
-              i.ti-control-shuffle(value= urlProduct)
-              span Add to compare
+              i.ti-control-shuffle(value= racket._id)
+              span Thêm để so sánh
           li
             a.tooltip-1(data-toggle='tooltip' data-placement='left' title='Thêm vào giỏ hàng')
-              i.ti-shopping-cart(value= urlProduct)
-              span Add to cart
+              i.ti-shopping-cart(value= racket._id)
+              span Thêm vào giỏ hàng

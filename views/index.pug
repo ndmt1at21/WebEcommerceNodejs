@@ -43,10 +43,7 @@ block content
           +sectionProductType(sectionRacket.title)
           .owl-carousel.owl-theme.products_carousel
             each racket in sectionRacket.rackets
-              - const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' })
-              - priceFormat = formatter.format(racket.price)
-              - priceDiscountFormat = formatter.format(racket.priceDiscount)
-              +productCard(`${racket.slug}.${racket._id}`, racket.imageCover, 5, racket.name, priceFormat, priceD)
+              +productCard(racket)
       
       
 

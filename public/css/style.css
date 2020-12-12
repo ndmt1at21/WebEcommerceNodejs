@@ -2232,7 +2232,7 @@ header ul.top_tools > li .dropdown-access .dropdown-menu {
   border: none;
   min-width: 0;
   padding: 15px;
-  width: 260px;
+  width: 280px;
   top: 100%;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -4554,6 +4554,7 @@ body.modal-open .mm-slideout {
   text-align: center;
   position: relative;
   cursor: pointer;
+
 }
 .grid_item:hover ul li {
   display: block;
@@ -7211,4 +7212,11 @@ img.mfp-img {
 
 .mfp-bg {
   opacity: 0.8 !important;
+}
+
+.image_avatar {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: 2px solid #333
 }

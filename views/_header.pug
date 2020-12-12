@@ -7,7 +7,7 @@ header.version_1
           .col-xl-3.col-lg-3.d-lg-flex.align-items-center
             #logo
               a(href='/')
-                img(src='img/logo.png' alt='' width='100' height='35')
+                img(src='/img/logo.png' alt='' width='100' height='35')
           nav.col-xl-6.col-lg-7
             a.open_close(href='javascript:void(0);')
               .hamburger.hamburger--spin
@@ -38,7 +38,7 @@ header.version_1
                       each brand in brands 
                         li
                           span
-                            a(href=`/vot-cau-long-${brand.name}`)= `${brand.name}`.toUpperCase()
+                            a(href=`/vot-cau-long-${brand.name}.cat`)= `${brand.name}`.toUpperCase()
 
           .col-xl-6.col-lg-7.col-md-6.d-none.d-md-block
             form.custom-search-input
@@ -50,47 +50,44 @@ header.version_1
               li
                 .dropdown.dropdown-cart
                   a.cart_bt(href='/cart')
-                    strong 2
+                    //- strong 0
                   .dropdown-menu
                     ul
                       li
-                        a(href='product-detail.html')
-                          figure
-                            img.lazy(src='img/products/product_placeholder_square_small.jpg' data-src='img/products/shoes/thumb/1.jpg' alt='' width='50' height='50')
-                          strong
-                            span 1x Armor Air x Fear
-                            | $90.00
+                        // ul row product
             
                     .total_drop
-                      .clearfix
-                        strong Total
-                        span $200.00
-                      a.btn_1.outline(href='/cart') View Cart
-                      a.btn_1(href='/checkout') Checkout
+                      a.btn_1(href='/cart') Xem giỏ hàng
                 // /dropdown-cart
               li
                 .dropdown.dropdown-access
-                  a.access_link(href='/account')
-                    span Account
+                  a(href='/account')
+                    if user
+                      img.image_avatar(src=`/img/users/${user.photo}`)
+                    else 
+                      img.image_avatar(src=`/img/default.jpg`)
                   .dropdown-menu
                     if user
                       a.btn_1(href='/account')= `${user.name}`
                     else 
-                      a.btn_1(href='/login') Sign In or Sign Up
+                      if user 
+                        a.btn_1(href='')= user.name
+                      else 
+                        a.btn_1(href='/login') Đăng nhập hoặc đăng ký
                     
                     ul
                       li
                         a(href='/track-order')
                           i.ti-truck
-                          | Track your Order
+                          | Kiểm tra tình trạng đơn hàng
                       li
                         a(href='/account')
                           i.ti-package
-                          | My Orders
+                          | Đơn mua
                       li
                         a(href='/account')
                           i.ti-user
-                          | My Profile
+                          | Trang cá nhân
                 // /dropdown-access
         // /row
       .search_mob_wp
