@@ -1,3 +1,6 @@
+import { setProduct } from './cartInLocalStorage';
+import { updateCartNotifi } from './header';
+
 ////////////////////////////////////
 //// SELECTOR
 const addToCartBtn = document.getElementById('btn-add-cart');
@@ -9,14 +12,15 @@ const pagination = document.querySelector('.pagination');
 ////////////////////////////////////////
 //// PRCESSING
 if (addToCartBtn) {
-  addToCartBtn.addEventListener('click', (e) => {
+  addToCartBtn.addEventListener('click', async (e) => {
     e.preventDefault();
     const url = window.location.toString();
     const id = url.slice(url.lastIndexOf('.') + 1);
 
     let quantity = 1;
     if (quantityCart) quantity = quantityCart.value;
-    localStorage.setItem(id, quantity);
+    setProduct(id, quantity);
+    await updateCartNotifi();
   });
 }
 

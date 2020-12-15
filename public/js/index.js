@@ -3,12 +3,11 @@ import { login, reset, register } from './auth';
 import { updateCartTable } from './cart';
 import {} from './header';
 import { sendReview } from './leave-review';
-import { showReviews } from './product-detail';
 import { deleteProduct } from './cartInLocalStorage';
 
 /////////////////////////////////////////////////
 // SELECTOR
-const seachForm = document.querySelector('.custom-search-input');
+const searchForm = document.querySelector('.custom-search-input');
 const loginForm = document.getElementById('form_login');
 const registerForm = document.getElementById('form_register');
 
@@ -20,11 +19,11 @@ const cardReview = document.getElementById('card_body_review');
 
 const pagination = document.querySelector('.pagination');
 
-if (seachForm) {
-  seachForm.addEventListener('submit', (e) => {
+if (searchForm) {
+  searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    let query = `/search/?keyword=${seachForm.firstChild.value}`;
+    let query = `/search?keyword=${searchForm.firstChild.value}`;
     window.location.href = query;
   });
 }
@@ -90,15 +89,11 @@ if (reviewForm) {
   });
 }
 
-if (cardReview) {
-  const racketID = window.location.pathname.split('.')[1];
-  showReviews(racketID, 1);
-}
-
 if (pagination) {
   pagination.addEventListener('click', (e) => {
     e.preventDefault();
     const racketID = window.location.pathname.split('.')[1];
+
     showReviews(racketID, e.target.value);
   });
 }

@@ -80,6 +80,7 @@ if (pagination) {
 
     let searchParams = new URLSearchParams(window.location.search.toString());
     searchParams.set('page', e.target.getAttribute('value'));
+
     window.location.href = `?${searchParams}`;
   });
 }

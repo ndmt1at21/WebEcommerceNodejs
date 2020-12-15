@@ -164,7 +164,9 @@ exports.getAbout = catchAsync(async (req, res, next) => {
 });
 
 exports.getSearch = catchAsync(async (req, res, next) => {
-  const query = Racket.find({ $text: { $search: req.query.keyword } });
+  const query = Racket.find({
+    name: { $regex: `${req.query.keyword}`, $options: 'i' }
+  });
 
   // limit for test
   Racket.paginate(query, {

@@ -6,6 +6,13 @@ export const setProducts = (productsObj) => {
   localStorage.setItem('cart', JSON.stringify(productsObj));
 };
 
+export const setProduct = (id, quantity) => {
+  const products = getProducts();
+
+  products[id] = quantity;
+  setProducts(products);
+};
+
 export const getIDs = () => {
   const productsInCart = getProducts();
   let IDs = [];

@@ -34,7 +34,7 @@ cartList.addEventListener('click', (e) => {
   console.log('dfjhhj');
 });
 
-const updateCartNotifi = async () => {
+export const updateCartNotifi = async () => {
   if (notifiNumProduct) {
     const productsInCart = JSON.parse(localStorage.getItem('cart'));
     cartList.textContent = '';
