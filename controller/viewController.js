@@ -136,7 +136,7 @@ exports.getFilter = catchAsync(async (req, res, next) => {
 
  Racket.paginate(query, {
   page: req.query.page >= 1 ? req.query.page : 1,
-  limit: 2
+  limit: 9
  })
   .then((result) => {
    res.status(200).render('list-grid', {
@@ -159,7 +159,7 @@ exports.checkout = catchAsync(async (req, res, next) => {
 
 exports.trackOrder = catchAsync(async (req, res, next) => {
  res.status(200).render('track-order', {
-  title: 'Thanh toán'
+  title: 'Kiểm tra đơn hàng'
  });
 });
 
@@ -193,6 +193,7 @@ exports.getSearch = catchAsync(async (req, res, next) => {
 });
 
 exports.getUser = catchAsync(async (req, res, next) => {
+ if (!req.user) res.redirect('./');
  res.status(200).render('user', {
   title: 'Trang cá nhân'
  });

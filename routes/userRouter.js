@@ -22,9 +22,9 @@ router.use(authController.protect);
 //   .post(userController.createUser);
 
 router
-  .route('/:id')
-  .get(userController.getUserByID)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+ .route('/:id')
+ .get(userController.getUserByID)
+ .patch(userController.updateUser)
+ .delete(userController.deleteUser);
 
 module.exports = router;
