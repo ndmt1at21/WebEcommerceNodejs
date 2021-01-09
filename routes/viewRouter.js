@@ -39,6 +39,7 @@ router.get(
  viewController.trackOrder
 );
 router.get('/user', authController.isLoggedIn, viewController.getUser);
+router.get('/reset:token', viewController.getResetPassword);
 router.get('/:slugWithID/leave-review', viewController.getLeaveReview);
 
 router.get(
