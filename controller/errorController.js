@@ -4,8 +4,6 @@ const AppError = require('./../ultilities/appError');
 const sendErrorDev = (err, req, res) => {
   console.error('ERROR: ', err);
 
-  console.log(err);
-
   res.status(err.statusCode).json({
     status: err.status,
     message: err.message,

@@ -167,6 +167,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   // create reset token
   const resetToken = user.createPasswordResetToken();
+  await user.save({ validateBeforeSave: false });
 
   // config email and send it to user email
   // use nodemailer
@@ -185,7 +186,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     { encoding: 'utf-8' },
     async function (err, htmlData) {
       if (err) {
-        console.log(err);
+        return next(AppError(500, 'Lỗi server'));
       } else {
         let url = `${req.protocol}://${req.get('host')}/reset/${resetToken}`;
 
@@ -198,15 +199,24 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
             subject: 'Yêu cầy thay đổi mật khẩu tài khoản TTShop',
             html: htmlData
           });
+
+          res.status(200).json({
+            status: 'success',
+            message: 'Token sent to email'
+          });
         } catch (error) {
-          console.log(error);
+          user.passwordResetToken = undefined;
+          user.passwordResetExpired = undefined;
+
+          await user.save({ validateBeforeSave: false });
+          return next(AppError(500, 'Lỗi server'));
         }
       }
     }
   );
 });
 
-exports.resetPassword = async (req, res, next) => {
+exports.resetPassword = catchAsync(async (req, res, next) => {
   const hashToken = crypto
     .createHash('sha256')
     .update(req.params.token)
@@ -214,19 +224,22 @@ exports.resetPassword = async (req, res, next) => {
 
   const user = await User.findOne({
     passwordResetToken: hashToken,
-    passwordResetExpired: { $gt: Date.now() }
+    passwordResetTokenExpired: { $gt: Date.now() }
   });
 
   if (!user) {
-    return next(AppError('Token expired', 400));
+    return next(new AppError('Token expired', 400));
   }
 
   user.password = req.body.password;
   user.passwordConfirm = req.body.passwordConfirm;
-  user.passwordResetToken = undefined;
-  user.passwordResetExpired = undefined;
 
   await user.save();
 
-  signSendJWT(user, 200);
-};
+  user.passwordResetToken = undefined;
+  user.passwordResetTokenExpired = undefined;
+
+  await user.save({ validateBeforeSave: false });
+
+  signSendJWT(user, res);
+});
