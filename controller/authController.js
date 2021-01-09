@@ -186,7 +186,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
     { encoding: 'utf-8' },
     async function (err, htmlData) {
       if (err) {
-        return next(AppError(500, 'Lỗi server'));
+        return next(new AppError(500, 'Lỗi server'));
       } else {
         let url = `${req.protocol}://${req.get('host')}/reset/${resetToken}`;
 
@@ -209,7 +209,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
           user.passwordResetExpired = undefined;
 
           await user.save({ validateBeforeSave: false });
-          return next(AppError(500, 'Lỗi server'));
+          return next(new AppError(500, 'Lỗi server'));
         }
       }
     }
