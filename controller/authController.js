@@ -192,6 +192,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
         htmlData = htmlData.replace('{%HREF_RESET%}', url);
 
+        console.log('tesstsststst');
         try {
           let info = await transporter.sendMail({
             from: `TTShop <reset@ttshop.com>`,
@@ -209,7 +210,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
           user.passwordResetExpired = undefined;
 
           await user.save({ validateBeforeSave: false });
-          return next(new AppError(500, 'Lỗi server'));
+          return next(new AppError(500, error));
         }
       }
     }
