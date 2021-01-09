@@ -187,9 +187,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       if (err) {
         console.log(err);
       } else {
-        let url = `${req.protocol}://${req.get(
-          'host'
-        )}/api/v1/user/resetPassword/${resetToken}`;
+        let url = `${req.protocol}://${req.get('host')}/reset/${resetToken}`;
 
         htmlData = htmlData.replace('{%HREF_RESET%}', url);
 
