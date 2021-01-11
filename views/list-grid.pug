@@ -7,7 +7,10 @@ mixin item(racket)
     - url= `/${racket.slug}.${racket._id}`
       figure
         a(href= url)
-          img.img-fluid.lazy(src=`/img/rackets/${racket.imageCover}` data-src='/img/products/shoes/1.jpg' alt= racket.slug)
+          - if (racket.imageCover.startsWith("http"))
+              img.img-fluid(src= racket.imageCover alt= racket.slug)
+          - else 
+              img.img-fluid(src= `./img/rackets/${racket.imageCover}` alt= racket.slug)
       a(href= url)
         h3= racket.name
       .price_box

@@ -3,7 +3,10 @@ mixin productCard(racket)
       .grid_item
         figure
           a(href= `/${racket.slug}.${racket._id}`)
-            img.owl-lazy(src=`img/rackets/${racket.imageCover}` data-src='img/products/shoes/3.jpg' alt= racket.slug)
+            - if (racket.imageCover.startsWith("http"))
+                img(src= racket.imageCover alt= racket.slug)
+            - else 
+                img(src= `./img/rackets/${racket.imageCover}` alt= racket.slug)
         .rating
           - arr = [1,2,3,4,5]
             each i in arr 
