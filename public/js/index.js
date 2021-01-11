@@ -4,6 +4,7 @@ import { updateCartTable } from './cart';
 import {} from './header';
 import { sendReview } from './leave-review';
 import { deleteProduct } from './cartInLocalStorage';
+import { updateSetting } from './updateSettings';
 
 /////////////////////////////////////////////////
 // SELECTOR
@@ -22,6 +23,8 @@ const pagination = document.querySelector('.pagination');
 const logoutButton = document.getElementById('logout');
 
 const formReset = document.getElementById('reset_password');
+
+const formUpdateInfo = document.getElementById('formUpdateInfo');
 
 if (searchForm) {
   searchForm.addEventListener('submit', (e) => {
@@ -124,5 +127,21 @@ if (formReset) {
     const token = url.substr(url.lastIndexOf('/') + 1);
 
     reset(newPassword, passwordConfirm, token);
+  });
+}
+
+if (formUpdateInfo) {
+  formUpdateInfo.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+
+    formData.append('name', document.getElementById('name').value);
+    formData.append('lastName', document.getElementById('lastName').value);
+    formData.append('phone', document.getElementById('phone').value);
+    formData.append('address', document.getElementById('address').value);
+    formData.append('photo', document.getElementById('inputImg').files[0]);
+
+    updateSetting(formData, 'info');
   });
 }

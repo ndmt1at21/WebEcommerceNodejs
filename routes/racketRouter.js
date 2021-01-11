@@ -10,7 +10,11 @@ router.use('/:racketID/review', reviewRouter);
 
 router
   .get('/', racketController.getRackets)
-  .post(racketController.uploadRacketPhotos, racketController.createRacket);
+  .post(
+    '/',
+    racketController.uploadRacketPhotos,
+    racketController.createRacket
+  );
 
 router.get('/brand', brandController.getAllBrands);
 
@@ -25,6 +29,6 @@ router.get(
   racketController.getRackets
 );
 
-// just for admin
-router.use(authController.protect).use(authController.restrictTo('admin'));
+// // just for admin
+// router.use(authController.protect).use(authController.restrictTo('admin'));
 module.exports = router;

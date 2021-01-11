@@ -13,7 +13,7 @@ block content
       .d-flex.justify-content-center
         .row
           .col
-            img#avatarProfile.avatar(src=`${user.photo}` alt='')
+            img#avatarProfile.avatar(src= `../img/users/${user.photo}` alt='')
       // avatar caption
       .d-flex.justify-content-center.mt-4
         .row
@@ -60,23 +60,23 @@ block content
 
 block append outBody 
   // modal-wrapper
-  #edit.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
+  #edit.modal.fade(role='dialog' aria-labelledby='exampleModalLongTitle' aria-hidden='true')
     .modal-dialog.modal-lg(role='document')
       .modal-content
         .modal-body
           button.close(type='button' data-dismiss='modal' aria-label='Close')
             span(aria-hidden='true') &times;
           .main.mt-auto
-            form(action='')
+            form#formUpdateInfo
               .d-flex.justify-content-center(style='position: relative')
                 .row
                   .col.form-group
                     // avatar image
-                    img#avatarEdit.avatar(src= user.photo alt='' style='display: block')
+                    img#avatarEdit.avatar(src= `../img/users/${user.photo}` alt='' style='display: block')
                     // avatar edit icon
                     label#editIcon(for='inputImg')
                     // accept image only
-                    input#inputImg.form-control-file(type='file' name='avatar' accept='image/*' style='display: none')
+                    input#inputImg.form-control-file(type='file' name='avatar' accept='image/*' style='display: none' enctype="multipart/form-data")
               // content
               .d-flex.justify-content-center.mt-5
                 .col
@@ -101,9 +101,16 @@ block append outBody
                     .row
                       .col-md-4.col-4.d-flex.align-items-end
                         label(for='name')
-                          strong H&#x1ECD; v&agrave; t&ecirc;n
+                          strong Họ
                       .col
-                        input#name.form-control(type='text' name='name' value= `${user.name} ${user.lastName}` required='')
+                        input#name.form-control(type='text' name='name' value= `${user.name}` required='')
+                  .form-group
+                    .row
+                      .col-md-4.col-4.d-flex.align-items-end
+                        label(for='lastName')
+                          strong Tên
+                      .col
+                        input#lastName.form-control(type='text' name='lastName' value= `${user.lastName}` required='')
                   .form-group
                     .row
                       .col-md-4.col-4.d-flex.align-items-end
@@ -120,7 +127,7 @@ block append outBody
                         input#address.form-control(type='text' name='address' value= user.address required='')
                   .row.d-flex.justify-content-center.mt-5
                     button.update-btn(type='submit')
-                      | C&#x1EAD;p nh&#x1EAD;t
+                      | C&#x1EAD;p nh&#x1EAD;
 
     script.
       let tmp = document.getElementsByClassName('avatar');

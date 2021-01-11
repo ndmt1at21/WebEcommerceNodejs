@@ -30,14 +30,21 @@ body
 
     include _footer
 
-    script(src='/js/boundle.js')
+    //- // SPECIFIC SCRIPTS
+
     script(src='/js/common_scripts.min.js')
     script(src='/js/main.js')
-    script(src='/js/addToCart.js')
-    //- // SPECIFIC SCRIPTS
-    //- script(src='js/carousel-home.min.js')
+    
+    block outBody
 
-block outBody
+
+    script(src='/js/boundle.js')
+    script(src='/js/addToCart.js')
+    
+    
+    
+
+    
 
 
 

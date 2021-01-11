@@ -42,6 +42,14 @@ export const register = async (
         phone
       }
     });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Đăng ký thành công');
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    }
   } catch (error) {
     showAlert('error', error.message);
   }

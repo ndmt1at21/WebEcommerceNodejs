@@ -7,7 +7,7 @@ dotenv.config({ path: './config.env' });
 const db = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PWD);
 mongoose
   .connect(db, {
-    useFindAndModify: true,
+    useFindAndModify: false,
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
