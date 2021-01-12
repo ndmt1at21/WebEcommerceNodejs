@@ -8,9 +8,9 @@ mixin item(racket)
       figure
         a(href= url)
           - if (racket.imageCover.startsWith("http"))
-              img.img-fluid(src= racket.imageCover alt= racket.slug)
+              img.img-fluid(src= racket.imageCover alt= racket.slug style='height: 264.400px; width: 264.400px')
           - else 
-              img.img-fluid(src= `./img/rackets/${racket.imageCover}` alt= racket.slug)
+              img.img-fluid(src= `./img/rackets/${racket.imageCover}` alt= racket.slug style='height: 264.400px; width: 264.400px')
       a(href= url)
         h3= racket.name
       .price_box
