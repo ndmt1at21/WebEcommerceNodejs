@@ -99,7 +99,6 @@ exports.getRacketDetail = catchAsync(async (req, res, next) => {
 });
 
 exports.createRacket = catchAsync(async (req, res, next) => {
-  console.log(req.body, '>>>>>>>>>>>>>>>>>>>>');
   const racket = req.body;
 
   if (req.files.imageCover) {

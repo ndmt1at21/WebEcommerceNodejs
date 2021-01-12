@@ -5,8 +5,6 @@ import { updateCartNotifi } from './header';
 //// SELECTOR
 const addToCartBtn = document.getElementById('btn-add-cart');
 const quantityCart = document.getElementById('quantity_1');
-const rowReview1 = document.getElementById('row_review_1');
-const rowReview2 = document.getElementById('row_review_2');
 const pagination = document.querySelector('.pagination');
 
 ////////////////////////////////////////

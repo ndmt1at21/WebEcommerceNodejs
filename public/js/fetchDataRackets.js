@@ -11,7 +11,6 @@ export const fetchDataRackets = async (IDs) => {
     else query += `,${id}`;
   });
 
-  console.log(query);
   return new Promise((resolve, reject) => {
     axios({
       method: 'GET',

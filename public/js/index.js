@@ -53,20 +53,7 @@ if (loginForm)
   });
 
 if (tableCartBody) {
-  updateCartTable(tableCartBody).then(() => {
-    const deleteProductCartBtns = document.querySelectorAll('.ti-trash');
-
-    if (deleteProductCartBtns) {
-      deleteProductCartBtns.forEach((btn) =>
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-
-          deleteProduct(btn.getAttribute('value'));
-          window.location.reload();
-        })
-      );
-    }
-  });
+  updateCartTable(tableCartBody).then(() => {});
 }
 
 // registerForm.addEventListener('click', (e) => console.log('dfdfjhn'));

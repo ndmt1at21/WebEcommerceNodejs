@@ -8739,7 +8739,6 @@ var fetchDataRackets = /*#__PURE__*/function () {
             IDs.map(function (id) {
               if (!query) query = id;else query += ",".concat(id);
             });
-            console.log(query);
             return _context.abrupt("return", new Promise(function (resolve, reject) {
               (0, _axios.default)({
                 method: 'GET',
@@ -8751,7 +8750,7 @@ var fetchDataRackets = /*#__PURE__*/function () {
               });
             }));
 
-          case 7:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -8883,36 +8882,138 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var rowProductHtml = function rowProductHtml(racket, quantity) {
   var priceVND = _formatter.formatter.format(racket.price);
 
-  return "<tr><td><div class=\"thumb_cart\"><img id=\"thumb_cart_small\" src=\"img/products/".concat(racket.imageCover, "\"     data-src=\"img/products/shoes/1.jpg\" class=\"lazy\" alt=").concat(racket.slug, "></div><a href=\"/").concat(racket.slug, ".").concat(racket._id, "\">\n    <span class=\"item_cart\">").concat(racket.name, "</span></a>    </td><td><strong>").concat(priceVND, "</strong></td><td><div class=\"numbers-row\">    <input type=\"text\" value=\"").concat(quantity, "\" id=\"quantity_1\" class=\"qty2\" name=\"quantity_1\">    <div class=\"inc button_inc\">+</div><div class=\"dec button_inc\">-</div></div>    </td><td><strong>").concat(priceVND, "</strong></td><td class=\"options\"><a href=\"#\"><i class=\"ti-trash\" value=").concat(racket._id, "></i></a>    </td></tr>");
+  var totalVND = _formatter.formatter.format(racket.price * quantity);
+
+  return "<tr><td><div class=\"thumb_cart\"><img id=\"thumb_cart_small\" src=\"".concat(racket.imageCover, "\"     data-src=\"img/products/shoes/1.jpg\" class=\"lazy\" alt=").concat(racket.slug, "></div><a href=\"/").concat(racket.slug, ".").concat(racket._id, "\">\n    <span class=\"item_cart\">").concat(racket.name, "</span></a>    </td><td><strong>").concat(priceVND, "</strong></td><td><div class=\"numbers-row\">    <input type=\"text\" value=\"").concat(quantity, "\" class=\"qty2\" name=\"quantity_1\">    <div class=\"inc button_inc\">+</div><div class=\"dec button_inc\">-</div></div>    </td><td><strong>").concat(totalVND, "</strong></td><td class=\"options\"><a href=\"#\"><i class=\"ti-trash\" value=").concat(racket._id, "></i></a>    </td></tr>");
 };
 
+var rackets = [];
+
 var updateCartTable = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(selector) {
-    var IDs, rackets;
-    return regeneratorRuntime.wrap(function _callee$(_context) {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(selector) {
+    var IDs, productsInCart, totalPrice, summaryTotalPrice, prices, incBtns, decBtns, delBtns, quantities;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             // Take ID in  localStorage
-            IDs = (0, _cartInLocalStorage.getIDs)(); // Fetch data from server
+            IDs = (0, _cartInLocalStorage.getIDs)();
+            productsInCart = JSON.parse(localStorage.getItem('cart')); // Fetch data from server
 
-            _context.next = 3;
+            _context2.next = 4;
             return (0, _fetchDataRackets.fetchDataRackets)(IDs);
 
-          case 3:
-            rackets = _context.sent;
+          case 4:
+            rackets = _context2.sent;
+
+            if (!(rackets.length === 0)) {
+              _context2.next = 8;
+              break;
+            }
+
+            selector.parentElement.innerHTML = '<span>Không có sản phẩm trong giỏ hàng</span>';
+            return _context2.abrupt("return");
+
+          case 8:
             // Update cart table view
+            selector.textContent = '';
+            totalPrice = document.getElementById('totalPrice');
+            summaryTotalPrice = document.getElementById('summaryTotalPrice');
+            prices = 0;
             rackets.forEach(function (racket) {
-              console.log(rackets);
-              selector.insertAdjacentHTML('afterbegin', rowProductHtml(racket, 2));
+              selector.insertAdjacentHTML('beforeend', rowProductHtml(racket, productsInCart[racket._id]));
+              prices += racket.price * productsInCart[racket._id];
+            });
+            totalPrice.textContent = _formatter.formatter.format(prices);
+            summaryTotalPrice.textContent = _formatter.formatter.format(prices);
+            incBtns = document.querySelectorAll('.inc.button_inc');
+            decBtns = document.querySelectorAll('.dec.button_inc');
+            delBtns = document.querySelectorAll('.ti-trash');
+            quantities = document.querySelectorAll('.qty2');
+            incBtns.forEach(function (el) {
+              el.addEventListener('click', /*#__PURE__*/function () {
+                var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
+                  var rowIndex;
+                  return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                      switch (_context.prev = _context.next) {
+                        case 0:
+                          e.preventDefault();
+                          el.parentElement.children[0].value++;
+
+                          if (!(el.parentElement.children[0].value >= 10)) {
+                            _context.next = 5;
+                            break;
+                          }
+
+                          el.parentElement.children[0].value = 10;
+                          return _context.abrupt("return");
+
+                        case 5:
+                          rowIndex = el.parentNode.parentNode.parentNode.rowIndex;
+                          (0, _cartInLocalStorage.incProduct)(rackets[rowIndex - 1]._id);
+                          updateCartTable(selector);
+
+                        case 8:
+                        case "end":
+                          return _context.stop();
+                      }
+                    }
+                  }, _callee);
+                }));
+
+                return function (_x2) {
+                  return _ref2.apply(this, arguments);
+                };
+              }());
+            });
+            decBtns.forEach(function (el) {
+              el.addEventListener('click', function (e) {
+                e.preventDefault();
+                el.parentElement.children[0].value--;
+
+                if (el.parentElement.children[0].value < 1) {
+                  el.parentElement.children[0].value = 1;
+                  return;
+                }
+
+                var rowIndex = el.parentNode.parentNode.parentNode.rowIndex;
+                (0, _cartInLocalStorage.decProduct)(rackets[rowIndex - 1]._id);
+                updateCartTable(selector);
+              });
+            });
+            delBtns.forEach(function (el) {
+              return el.addEventListener('click', function (e) {
+                e.preventDefault();
+                var rowIndex = el.parentNode.parentNode.parentNode.rowIndex;
+                (0, _cartInLocalStorage.deleteProduct)(rackets[rowIndex - 1]._id);
+                updateCartTable(selector);
+              });
+            });
+            quantities.forEach(function (el) {
+              return el.addEventListener('change', function (e) {
+                e.preventDefault();
+
+                if (el.value > 10) {
+                  el.value = 10;
+                } else if (el.value < 1) {
+                  el.value = 1;
+                } else if (!Number.isInteger(Number(el.value))) {
+                  el.value = 1;
+                }
+
+                var rowIndex = el.parentNode.parentNode.parentNode.rowIndex;
+                (0, _cartInLocalStorage.setProduct)(rackets[rowIndex - 1]._id, el.value);
+                updateCartTable(selector);
+              });
             });
 
-          case 5:
+          case 23:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function updateCartTable(_x) {
@@ -9507,19 +9608,7 @@ if (loginForm) /////////////////////////////////////////////////
   });
 
 if (tableCartBody) {
-  (0, _cart.updateCartTable)(tableCartBody).then(function () {
-    var deleteProductCartBtns = document.querySelectorAll('.ti-trash');
-
-    if (deleteProductCartBtns) {
-      deleteProductCartBtns.forEach(function (btn) {
-        return btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          (0, _cartInLocalStorage.deleteProduct)(btn.getAttribute('value'));
-          window.location.reload();
-        });
-      });
-    }
-  });
+  (0, _cart.updateCartTable)(tableCartBody).then(function () {});
 } // registerForm.addEventListener('click', (e) => console.log('dfdfjhn'));
 
 
@@ -9650,7 +9739,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58364" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

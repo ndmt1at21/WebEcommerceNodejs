@@ -25,12 +25,7 @@ block content
         tbody
           // content row product
           
-      .row.add_top_30.flex-sm-row-reverse.cart_actions
-        .col-sm-12
-          .apply-coupon
-            .form-group.form-inline
-              input.form-control(type='number' name='coupon-code' value='' placeholder='Promo code')
-              button.btn_1.outline(type='button') Mã khuyến mãi
+
       // /cart_actions
     // /container
     .box_cart
@@ -38,15 +33,16 @@ block content
         .row.justify-content-end
           .col-xl-4.col-lg-4.col-md-6
             ul
-              li
+              li(style="display:flex; justify-content: space-between;")
                 span Tổng tiền sản phẩm
-                |  $240.00
-              li
+                span#totalPrice 0
+              li(style="display:flex; justify-content: space-between;")
                 span Phí vận chuyển
-                |  $7.00
-              li
+                span#transportFee 0
+              li(style="display:flex; justify-content: space-between;")
                 span Tổng cộng
-                |  $247.00
+                span#summaryTotalPrice 0
+                
             a.btn_1.full-width.cart(href='/checkout') Tiến hành đặt hàng
 
   script(src="/js/common_scripts.min.js")
