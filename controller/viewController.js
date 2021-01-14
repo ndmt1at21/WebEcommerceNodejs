@@ -193,9 +193,16 @@ exports.getSearch = catchAsync(async (req, res, next) => {
 });
 
 exports.getUser = catchAsync(async (req, res, next) => {
-  if (!req.user) res.redirect('./');
+  if (!req.user) res.redirect('/');
   res.status(200).render('user', {
     title: 'Trang cá nhân'
+  });
+});
+
+exports.getChangePassword = catchAsync(async (req, res, next) => {
+  if (!req.user) res.redirect('/');
+  res.status(200).render('update-password', {
+    title: 'Đổi mật khẩu'
   });
 });
 

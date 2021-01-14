@@ -10,6 +10,7 @@ router.post('/signup', authController.signup);
 router.get('/logout', authController.logout);
 router.post('/forgot', authController.forgotPassword);
 router.patch('/reset/:token', authController.resetPassword);
+router.patch('/updatePassword', authController.updatePassword);
 router.patch(
   '/updateMe',
   userController.uploadUserPhoto,

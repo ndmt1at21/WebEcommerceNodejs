@@ -16,11 +16,11 @@ export const updateSetting = async (form, type) => {
     if (res.data.status == 'success') {
       showAlert('success', 'Cập nhật thông tin thành công');
       setTimeout(() => {
-        window.location.reload();
+        window.location.href = '/user/profile';
       }, 1000);
     }
   } catch (error) {
-    console.log(error);
-    // showAlert('error', error.data.message);
+    console.log(error.response.data);
+    showAlert('error', error.response.data.message);
   }
 };

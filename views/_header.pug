@@ -61,14 +61,14 @@ header.version_1
                 // /dropdown-cart
               li
                 .dropdown.dropdown-access
-                  a(href='/user')
+                  a(href='/user/profile')
                     if user
                       img.image_avatar(src=`../img/users/${user.photo}`)
                     else 
                       img.image_avatar(src=`../img/default.jpg`)
                   .dropdown-menu
                     if user
-                      a.btn_1(href='/user')= `${user.name}`
+                      a.btn_1(href='/user/profile')= `${user.name}`
                     else 
                       if user 
                         a.btn_1(href='')= user.name
@@ -85,7 +85,7 @@ header.version_1
                           i.ti-package
                           | Đơn mua
                       li
-                        a(href='/user')
+                        a(href='/user/profile')
                           i.ti-user
                           | Trang cá nhân
                       li#logout

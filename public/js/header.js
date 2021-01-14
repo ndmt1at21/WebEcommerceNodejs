@@ -7,12 +7,19 @@ const emptyCart = () => {
 };
 
 const rowProductInCart = (racket, numProduct) => {
+  let imgUrl = '';
+  if (racket.imageCover.startsWith('http')) {
+    imgUrl = racket.imageCover;
+  } else {
+    imgUrl = `./img/products/${racket.imageCover}`;
+  }
+
   return `<li>
             <a href="/${racket.slug}.${racket._id}">
               <figure>
                 <img
                   class="lazy"
-                  src="img/products/${racket.imageCover}"
+                  src="${imgUrl}"
                   data-src="img/products/shoes/thumb/1.jpg"
                   alt="${racket.slug}"
                   width="50"

@@ -244,3 +244,30 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
   signSendJWT(user, res);
 });
+
+exports.updatePassword = catchAsync(async (req, res, next) => {
+  // Take password
+  const user = await User.findById(req.user._id).select('+password');
+
+  // Check input password and user's password
+  if (
+    !user ||
+    !(await user.checkCorrectPassword(req.body.currentPassword, user.password))
+  ) {
+    return next(new AppError('Incorrect password'));
+  }
+
+  if (
+    !user ||
+    !(await user.checkCorrectPassword(req.body.password, user.password))
+  ) {
+    return next(new AppError(`New password can't not same old password`));
+  }
+
+  user.password = req.body.password;
+  user.passwordConfirm = req.body.passwordConfirm;
+
+  await user.save();
+
+  signSendJWT(user, res);
+});

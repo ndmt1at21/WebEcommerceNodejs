@@ -38,7 +38,13 @@ router.get(
   authController.isLoggedIn,
   viewController.trackOrder
 );
-router.get('/user', authController.isLoggedIn, viewController.getUser);
+
+router.get('/user/profile', authController.isLoggedIn, viewController.getUser);
+router.get(
+  '/user/updatePassword',
+  authController.isLoggedIn,
+  viewController.getChangePassword
+);
 router.get('/reset/:token', viewController.getResetPassword);
 router.get('/:slugWithID/leave-review', viewController.getLeaveReview);
 
