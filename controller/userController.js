@@ -119,7 +119,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsync(async (req, res, next) => {
-  await User.findByIdAndUpdate(req.params.id, { active: true });
+  await User.findByIdAndUpdate(req.params.id, req.body);
 
   res.status(200).json({
     status: 'success'
@@ -127,7 +127,7 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteUser = catchAsync(async (req, res, next) => {
-  if (req.user._id == id) {
+  if (req.user._id == req.params.id) {
     return new AppError('Không thể tự xoá tài khoản');
   }
 
