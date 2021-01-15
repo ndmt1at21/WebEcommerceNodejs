@@ -6,168 +6,76 @@ block content
   main.bg_gray
     .container.margin_30
       .page_header
-        .breadcrumbs
-          ul
-            li
-              a(href='#') Home
-            li
-              a(href='#') Category
-            li Page active
-        h1 Sign In or Create an Account
+        h1 Xác nhận thông tin thanh toán
       // /page_header
       .row
         .col-lg-4.col-md-6
           .step.first
-            h3 1. User Info and Billing address
-            ul#tab_checkout.nav.nav-tabs(role='tablist')
-              li.nav-item
-                a#home-tab.nav-link.active(data-toggle='tab' href='#tab_1' role='tab' aria-controls='tab_1' aria-selected='true') Register
-              li.nav-item
-                a#profile-tab.nav-link(data-toggle='tab' href='#tab_2' role='tab' aria-controls='tab_2' aria-selected='false') Login
+            h3 1. Thông tin thanh toán
             .tab-content.checkout
               #tab_1.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='tab_1')
+
                 .form-group
-                  input.form-control(type='email' placeholder='Email')
-                .form-group
-                  input.form-control(type='password' placeholder='Password')
-                hr
-                .row.no-gutters
-                  .col-6.form-group.pr-1
-                    input.form-control(type='text' placeholder='Name')
-                  .col-6.form-group.pl-1
-                    input.form-control(type='text' placeholder='Last Name')
+                  input.form-control(type='text' placeholder='Tên người nhận hàng')
                 // /row
                 .form-group
-                  input.form-control(type='text' placeholder='Full Address')
-                .row.no-gutters
-                  .col-6.form-group.pr-1
-                    input.form-control(type='text' placeholder='City')
-                  .col-6.form-group.pl-1
-                    input.form-control(type='text' placeholder='Postal code')
-                // /row
-                .row.no-gutters
-                  .col-md-12.form-group
-                    .custom-select-form
-                      select#country.wide.add_bottom_15(name='country')
-                        option(value='' selected='') Country
-                        option(value='Europe') Europe
-                        option(value='United states') United states
-                        option(value='Asia') Asia
+                  input.form-control(type='text' placeholder='Địa chỉ nhận hàng')
+                .form-group
+                  input.form-control(type='text' placeholder='Tỉnh/Thành phố')
                 // /row
                 .form-group
-                  input.form-control(type='text' placeholder='Telephone')
-                hr
-                .form-group
-                  label#other_addr.container_check
-                    | Other billing address
-                    input(type='checkbox')
-                    span.checkmark
-                #other_addr_c.pt-2
-                  .row.no-gutters
-                    .col-6.form-group.pr-1
-                      input.form-control(type='text' placeholder='Name')
-                    .col-6.form-group.pl-1
-                      input.form-control(type='text' placeholder='Last Name')
-                  // /row
-                  .form-group
-                    input.form-control(type='text' placeholder='Full Address')
-                  .row.no-gutters
-                    .col-6.form-group.pr-1
-                      input.form-control(type='text' placeholder='City')
-                    .col-6.form-group.pl-1
-                      input.form-control(type='text' placeholder='Postal code')
-                  // /row
-                  .row.no-gutters
-                    .col-md-12.form-group
-                      .custom-select-form
-                        select#country_2.wide.add_bottom_15(name='country')
-                          option(value='' selected='') Country
-                          option(value='Europe') Europe
-                          option(value='United states') United states
-                          option(value='Asia') Asia
-                  // /row
-                  .form-group
-                    input.form-control(type='text' placeholder='Telephone')
-                // /other_addr_c
-                hr
+                  input.form-control(type='text' placeholder='SĐT nhận hàng')
               // /tab_1
               
               // /tab_2
           // /step
         .col-lg-4.col-md-6
           .step.middle.payments
-            h3 2. Payment and Shipping
+            h3 2. Thanh toán và vận chuyển
+             h6.pb-2 Phương thức thanh toán
             ul
               li
                 label.container_radio
-                  | Credit Card
+                  | Thanh toán khi nhận hàng
                   a.info(href='#0' data-toggle='modal' data-target='#payments_method')
                   input(type='radio' name='payment' checked='')
                   span.checkmark
-              li
-                label.container_radio
-                  | Paypal
-                  a.info(href='#0' data-toggle='modal' data-target='#payments_method')
-                  input(type='radio' name='payment')
-                  span.checkmark
-              li
-                label.container_radio
-                  | Cash on delivery
-                  a.info(href='#0' data-toggle='modal' data-target='#payments_method')
-                  input(type='radio' name='payment')
-                  span.checkmark
-              li
-                label.container_radio
-                  | Bank Transfer
-                  a.info(href='#0' data-toggle='modal' data-target='#payments_method')
-                  input(type='radio' name='payment')
-                  span.checkmark
-            .payment_info.d-none.d-sm-block
-              figure
-                img(src='img/cards_all.svg' alt='')
-              p
-                | Sensibus reformidans interpretaris sit ne, nec errem nostrum et, te nec meliore philosophia. At vix quidam periculis. Solet tritani ad pri, no iisque definitiones sea.
-            h6.pb-2 Shipping Method
+
+            h6.pb-2 Phương thức vận chuyển
             ul
               li
                 label.container_radio
-                  | Standard shipping
+                  | Vận chuyển tiết kiệm
                   a.info(href='#0' data-toggle='modal' data-target='#payments_method')
                   input(type='radio' name='shipping' checked='')
                   span.checkmark
               li
                 label.container_radio
-                  | Express shipping
+                  | Vận chuyển nhanh
                   a.info(href='#0' data-toggle='modal' data-target='#payments_method')
                   input(type='radio' name='shipping')
                   span.checkmark
           // /step
         .col-lg-4.col-md-6
           .step.last
-            h3 3. Order Summary
+            h3 3. Xác nhận đơn hàng
             .box_general.summary
               ul
                 li.clearfix
-                  em 1x Armor Air X Fear
+                  a(href="")
+                    em 1x Armor Air X Fear
                   span $145.00
-                li.clearfix
-                  em 2x Armor Air Zoom Alpha
-                  span $115.00
               ul
                 li.clearfix
                   em
-                    strong Subtotal
+                    strong Tổng giá
                   span $450.00
                 li.clearfix
                   em
-                    strong Shipping
+                    strong Vận chuyển
                   span $0
               .total.clearfix
-                | TOTAL 
+                | TỔNG CỘNG
                 span $450.00
-              .form-group
-                label.container_check
-                  | Register to the Newsletter.
-                  input(type='checkbox' checked='')
-                  span.checkmark
-              a.btn_1.full-width(href='confirm.html') Confirm and Pay
+            
+              a.btn_1.full-width(href='/confirm') Xác nhận và thanh toán

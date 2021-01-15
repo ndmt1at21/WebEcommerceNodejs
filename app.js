@@ -18,30 +18,15 @@ if (process.env.NODE_ENV === 'development') {
 
 // just for local test
 // it can remove error cors (http)
-app.options('*', cors());
-app.use(function (req, res, next) {
-  // Website you wish to allow to connect
-  res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:8000');
+const corsOptions = {
+  origin: 'http://127.0.0.1:8000',
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['X-Requested-With', 'content-type', 'Authorization'],
+  exposedHeaders: ['X-Paging-Current', 'X-Paging-Count'],
+  credentials: true
+};
 
-  // Request methods you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
-  );
-
-  // Request headers you wish to allow
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With,content-type'
-  );
-
-  // Set to true if you need the website to include cookies in the requests sent
-  // to the API (e.g. in case you use sessions)
-  res.setHeader('Access-Control-Allow-Credentials', true);
-
-  // Pass to next layer of middleware
-  next();
-});
+app.use(cors(corsOptions));
 
 app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');

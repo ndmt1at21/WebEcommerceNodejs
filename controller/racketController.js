@@ -6,6 +6,7 @@ const factory = require('./../controller/handlerFactory');
 const crypto = require('crypto');
 
 const multer = require('multer');
+const { findById } = require('./../models/racketModel');
 
 // errro when upload > 5 files (default)
 const diskStorage = multer.diskStorage({
@@ -46,13 +47,25 @@ exports.uploadRacketPhotos = upload.fields([
 ]);
 
 exports.getRackets = catchAsync(async (req, res, next) => {
+  if (!req.query) {
+    return new AppError('Something error', 500);
+  }
+
   let query = Racket.find();
 
+  if (req.query.name) {
+    query = Racket.find({
+      name: { $regex: `${req.query.name}`, $options: 'i' }
+    });
+    req.query.name = undefined;
+  }
+
   const feature = new APIFeatures(query, req.query);
-  feature.filter().sort().limit();
+  feature.filter().sort();
 
   Racket.paginate(query, {
-    page: req.query.page > 0 ? req.query.page : 1
+    page: req.query.page > 0 ? req.query.page : 1,
+    limit: req.query.limit > 0 ? req.query.limit : 0
   })
     .then((result) => {
       res.setHeader('X-Paging-Count', `${result.totalPages}`);
@@ -101,6 +114,18 @@ exports.getRacketDetail = catchAsync(async (req, res, next) => {
 exports.createRacket = catchAsync(async (req, res, next) => {
   const racket = req.body;
 
+  if (racket.frame) {
+    racket.frame = racket.frame.split(',');
+  }
+
+  if (racket.shaft) {
+    racket.shaft = racket.shaft.split(',');
+  }
+
+  if (racket.color) {
+    racket.color = racket.color.split(',');
+  }
+
   if (req.files.imageCover) {
     racket.imageCover = req.files.imageCover[0].filename;
   }
@@ -109,7 +134,26 @@ exports.createRacket = catchAsync(async (req, res, next) => {
     racket.images = req.files.images.map((el) => el.filename);
   }
 
-  await Racket.create(racket);
+  const newRacket = await Racket.create(racket);
+
+  res.status(200).json({
+    status: 'success',
+    data: newRacket
+  });
+});
+
+exports.updateRacket = catchAsync(async (req, res, next) => {
+  const racket = await Racket.findById(req.params.id);
+
+  Object.keys(req.body).forEach(
+    (key) =>
+      req.body[key] === undefined ||
+      (req.body[key] === 'undefined' && delete req.body[key])
+  );
+
+  await Racket.findByIdAndUpdate(req.params.id, req.body, {
+    runValidators: true
+  });
 
   res.status(200).json({
     status: 'success'

@@ -145,6 +145,7 @@ exports.isLoggedIn = catchAsync(async (req, res, next) => {
 
 exports.restrictTo = function (...roles) {
   // req.user from before middleware (protect)
+  console.log(roles);
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(new AppError(`You don't have permission for this action`));

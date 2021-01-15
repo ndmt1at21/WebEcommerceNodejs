@@ -63,9 +63,9 @@ header.version_1
                 .dropdown.dropdown-access
                   a(href='/user/profile')
                     if user
-                      img.image_avatar(src=`../img/users/${user.photo}`)
+                      img.image_avatar(src=`/img/users/${user.photo}`)
                     else 
-                      img.image_avatar(src=`../img/default.jpg`)
+                      img.image_avatar(src=`/img/default.jpg`)
                   .dropdown-menu
                     if user
                       a.btn_1(href='/user/profile')= `${user.name}`
@@ -77,11 +77,7 @@ header.version_1
                     
                     ul
                       li
-                        a(href='/track-order')
-                          i.ti-truck
-                          | Kiểm tra tình trạng đơn hàng
-                      li
-                        a(href='/account')
+                        a(href='/user/profile')
                           i.ti-package
                           | Đơn mua
                       li

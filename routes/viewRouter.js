@@ -30,6 +30,7 @@ router.get('/', authController.isLoggedIn, viewController.getOverview);
 router.get('/login', authController.isLoggedIn, viewController.getLogin);
 router.get('/cart', authController.isLoggedIn, viewController.getCart);
 router.get('/checkout', authController.isLoggedIn, viewController.getCheckout);
+router.get('/confirm', authController.isLoggedIn, viewController.getConfirm);
 router.get('/filter', authController.isLoggedIn, viewController.getFilter);
 router.get('/about', authController.isLoggedIn, viewController.getAbout);
 router.get('/search', authController.isLoggedIn, viewController.getSearch);

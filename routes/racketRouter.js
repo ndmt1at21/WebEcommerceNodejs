@@ -8,19 +8,26 @@ const router = express.Router();
 
 router.use('/:racketID/review', reviewRouter);
 
-router
-  .get('/', racketController.getRackets)
-  .post(
-    '/',
-    racketController.uploadRacketPhotos,
-    racketController.createRacket
-  );
+router.get('/', racketController.getRackets);
+router.post(
+  '/',
+  authController.protect,
+  authController.restrictTo('admin'),
+  racketController.uploadRacketPhotos,
+  racketController.createRacket
+);
 
 router.get('/brand', brandController.getAllBrands);
 
 router
   .get('/:id', racketController.getRacketByID)
   .delete('/:id', racketController.deleteRacketByID);
+
+router.patch(
+  '/:id',
+  racketController.uploadRacketPhotos,
+  racketController.updateRacket
+);
 
 // alias
 router.get(

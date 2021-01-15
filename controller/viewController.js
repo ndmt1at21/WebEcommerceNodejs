@@ -129,6 +129,16 @@ exports.getCheckout = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getConfirm = catchAsync(async (req, res, next) => {
+  if (!req.user) {
+    res.redirect('/confirm');
+  }
+
+  res.status(200).render('confirm', {
+    title: 'Đặt hàng thành công'
+  });
+});
+
 exports.getFilter = catchAsync(async (req, res, next) => {
   const query = Racket.find();
   const feature = new APIFeatures(query, req.query);
@@ -151,12 +161,6 @@ exports.getFilter = catchAsync(async (req, res, next) => {
     });
 });
 
-exports.checkout = catchAsync(async (req, res, next) => {
-  res.status(200).render('checkout', {
-    title: 'Thanh toán'
-  });
-});
-
 exports.trackOrder = catchAsync(async (req, res, next) => {
   res.status(200).render('track-order', {
     title: 'Kiểm tra đơn hàng'
@@ -176,7 +180,7 @@ exports.getSearch = catchAsync(async (req, res, next) => {
 
   // limit for test
   Racket.paginate(query, {
-    limit: 2,
+    limit: 10,
     page: req.query.page || 1
   })
     .then((result) => {
@@ -207,6 +211,7 @@ exports.getChangePassword = catchAsync(async (req, res, next) => {
 });
 
 exports.getResetPassword = catchAsync(async (req, res, next) => {
+  if (!req.user) res.redirect('/');
   res.status(200).render('reset-password', {
     title: 'Reset mật khẩu'
   });
