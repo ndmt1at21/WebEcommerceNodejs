@@ -20,7 +20,8 @@ if (process.env.NODE_ENV === 'development') {
 // it can remove error cors (http)
 app.use(
   cors({
-    origin: 'http://127.0.0.1:8000'
+    origin: 'http://127.0.0.1:8000',
+    credentials: true
   })
 );
 
