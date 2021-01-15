@@ -17,7 +17,7 @@ const signSendJWT = (user, res) => {
     expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 60),
     httpOnly: true,
     sameSite: 'None',
-    secure
+    secure: false
   });
 
   res.status(200).json({
