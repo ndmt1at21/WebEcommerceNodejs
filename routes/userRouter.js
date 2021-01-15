@@ -17,17 +17,10 @@ router.patch(
   userController.updateMe
 );
 
-// router.patch('/updateMyPassword', authController.updateMyPassword);
-// router.get('/updateInfo', authController.updateInfo);
-
-// just for admin
-// router.use(authController.restrictTo('admin'));
-// router
-//   .route('/')
-//   .get(userController.getManyUsers)
-//   .post(userController.createUser);
+router.get('/', userController.getUsers);
 
 router
+  .use(authController.protect, authController.restrictTo('admin'))
   .route('/:id')
   .get(userController.getUserByID)
   .patch(userController.updateUser)

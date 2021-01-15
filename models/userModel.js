@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -78,6 +79,8 @@ const userSchema = new mongoose.Schema({
   passwordResetToken: String,
   passwordResetTokenExpired: Date
 });
+
+userSchema.plugin(mongoosePaginate);
 
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {

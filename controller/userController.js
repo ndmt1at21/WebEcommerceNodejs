@@ -4,6 +4,7 @@ const catchAsync = require('./../ultilities/catchAsync');
 const multer = require('multer');
 const AppError = require('../ultilities/appError');
 const crypto = require('crypto');
+const APIFeatures = require('./../ultilities/APIFeatures');
 
 // errro when upload > 5 files (default)
 const diskStorage = multer.diskStorage({
@@ -34,14 +35,39 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 
-exports.getLogin = catchAsync(async (req, res, next) => {
-  // res.status(200).render('account');
-  next();
-});
+exports.getUsers = catchAsync(async (req, res, next) => {
+  if (!req.query) {
+    return new AppError('Something error', 500);
+  }
 
-exports.getAccount = catchAsync(async (req, res, next) => {
-  // res.status(200).render('account');
-  next();
+  let query = User.find().select('+active');
+
+  if (req.query.email) {
+    query = User.find({
+      name: { $regex: `${req.query.email}`, $options: 'i' }
+    });
+    req.query.email = undefined;
+  }
+
+  const feature = new APIFeatures(query, req.query);
+  feature.filter().sort();
+
+  User.paginate(query, {
+    page: req.query.page > 0 ? req.query.page : 1,
+    limit: req.query.limit > 0 ? req.query.limit : 0
+  })
+    .then((result) => {
+      res.setHeader('X-Paging-Count', `${result.totalPages}`);
+      res.setHeader('X-Paging-Current', `${result.page}`);
+
+      res.status(200).json({
+        status: 'success',
+        data: {
+          users: result.docs
+        }
+      });
+    })
+    .catch((err) => console.log(err));
 });
 
 exports.getUserByID = catchAsync(async (req, res, next) => {
@@ -93,7 +119,7 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 });
 
 exports.updateUser = catchAsync(async (req, res, next) => {
-  await User.findOneAndUpdate(req.body);
+  await User.findByIdAndUpdate(req.params.id, { active: true });
 
   res.status(200).json({
     status: 'success'
@@ -101,7 +127,11 @@ exports.updateUser = catchAsync(async (req, res, next) => {
 });
 
 exports.deleteUser = catchAsync(async (req, res, next) => {
-  await User.findByIdAndUpdate({ active: false });
+  if (req.user._id == id) {
+    return new AppError('Không thể tự xoá tài khoản');
+  }
+
+  await User.findByIdAndUpdate(req.params.id, { active: false });
 
   res.status(204).json({
     status: 'success'
