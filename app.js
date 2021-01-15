@@ -18,20 +18,9 @@ if (process.env.NODE_ENV === 'development') {
 
 // just for local test
 // it can remove error cors (http)
-const corsOptions = {
-  origin: 'http://127.0.0.1:8000',
-  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: [
-    'X-Requested-With',
-    'content-type',
-    'Authorization',
-    'Set-Cookie'
-  ],
-  exposedHeaders: ['X-Paging-Current', 'X-Paging-Count'],
-  credentials: true
-};
+app.use(cors());
 
-app.use(cors(corsOptions));
+app.options('*', cors());
 
 app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');
