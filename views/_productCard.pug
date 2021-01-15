@@ -6,7 +6,7 @@ mixin productCard(racket)
             - if (racket.imageCover.startsWith("http"))
                 img(src= racket.imageCover alt= racket.slug style='height: 264.400px; width: 264.400px')
             - else 
-                img(src= `./img/rackets/${racket.imageCover}` alt= racket.slug style='height: 264.400px; width: 264.400px') 
+                img(src= `./img/rackets/${racket.imageCover}` alt= racket.slug style='height: 264.400pxs; width: 264.400px') 
         .rating
           - arr = [1,2,3,4,5]
             each i in arr 

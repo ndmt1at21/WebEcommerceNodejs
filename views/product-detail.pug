@@ -45,15 +45,15 @@ block content
             .slider
               .owl-carousel.owl-theme.main
                 if racket.imageCover.startsWith("http")
-                  .item-box(style=`background-image: url(${racket.imageCover}); background-size: contain`)
+                  .item-box(style=`background-image: url(${racket.imageCover}); background-size: cover`)
                 else 
-                  .item-box(style=`background-image: url(/img/rackets/${racket.imageCover}); background-size: contain`)
+                  .item-box(style=`background-image: url(/img/rackets/${racket.imageCover}); background-size: cover`)
                 
                 each image in racket.images
                   if image.startsWith("http")
-                    .item-box(style=`background-image: url(${image}); background-size: contain`)
+                    .item-box(style=`background-image: url(${image}); background-size: cover`)
                   else 
-                    .item-box(style=`background-image: url(/img/rackets/${image}); background-size: contain`)
+                    .item-box(style=`background-image: url(/img/rackets/${image}); background-size: cover`)
 
               .left.nonl
                 i.ti-angle-left
@@ -62,15 +62,15 @@ block content
             .slider-two
               .owl-carousel.owl-theme.thumbs
                 if racket.imageCover.startsWith("http")
-                  .item.active(style=`background-image: url(${racket.imageCover}); background-size: contain`)
+                  .item.active(style=`background-image: url(${racket.imageCover}); background-size: cover`)
                 else 
-                  .item.active(style=`background-image: url(/img/rackets/${racket.imageCover}); background-size: contain`)
+                  .item.active(style=`background-image: url(/img/rackets/${racket.imageCover}); background-size: cover`)
                 
                 each image in racket.images
                   if image.startsWith("http")
-                    .item(style=`background-image: url(${image}); background-size: contain`)
+                    .item(style=`background-image: url(${image}); background-size: cover`)
                   else 
-                    .item(style=`background-image: url(/img/rackets/${image}); background-size: contain`)
+                    .item(style=`background-image: url(/img/rackets/${image}); background-size: cover`)
 
               .left-t.nonl-t
               .right-t
