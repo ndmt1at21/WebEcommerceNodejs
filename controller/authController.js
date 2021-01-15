@@ -16,8 +16,8 @@ const signSendJWT = (user, res) => {
   res.cookie('jwt', token, {
     expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 60),
     httpOnly: true,
-    sameSite: false,
-    secure: false
+    sameSite: 'None',
+    secure
   });
 
   res.status(200).json({
