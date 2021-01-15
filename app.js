@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 // just for local test
 // it can remove error cors (http)
 const corsOptions = {
-  origin: ['http://127.0.0.1:8000', 'https://adminttshopvn.herokuapp.com'],
+  origin: ['http://127.0.0.1:8000', 'http://adminttshopvn.herokuapp.com'],
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['X-Requested-With', 'content-type', 'Authorization'],
   exposedHeaders: ['X-Paging-Current', 'X-Paging-Count'],
