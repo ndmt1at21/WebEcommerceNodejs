@@ -62,5 +62,20 @@
             "6.8 SHAFT"
         ]
     }
+    {
+        "name": "Kawasaki",
+        "category": ["TONALITY", "Navigator", "Explore"],
+        "frame": [
+            "Carbon Fiber",
+            "24T HI-MODULES GRAPHITE", 
+            "Graphite Fiber"
+        ],
+        "shaft": [
+            "Carbon Fiber",
+            "24T HI-MODULES GRAPHITE",
+            "Graphite Fiber"
+        ]
+    }
+]
 ]
    
