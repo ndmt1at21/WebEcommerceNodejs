@@ -92,9 +92,17 @@ if (reviewForm) {
 if (pagination) {
   pagination.addEventListener('click', (e) => {
     e.preventDefault();
-    const racketID = window.location.pathname.split('.')[1];
 
-    showReviews(racketID, e.target.value);
+    const valuePage = e.target.getAttribute('value');
+
+    let url = new URL(window.location.toString());
+    let urlParam = url.searchParams;
+
+    urlParam.set('page', valuePage);
+
+    url.search = urlParam.toString();
+
+    window.location = url.toString();
   });
 }
 

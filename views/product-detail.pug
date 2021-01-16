@@ -17,7 +17,7 @@ mixin colReview(review)
           span.rating
             - var stars = [1, 2, 3, 4, 5]
               each star in stars
-                if star < review.rating 
+                if star <= review.rating 
                   i.icon-star
                 else 
                   i.icon-star.empty
