@@ -24,7 +24,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     {
       image: 'slide-3.jpg',
       title: ['Yonex', 'Astrox 38S - rẻ bất ngờ'],
-      subtitle: 'Vua moi ra mat',
+      subtitle: 'Mới ra mắt',
       ref:
         '/vot-cau-long-yonex-astrox-38s-new-chinh-hang.5ffc5d90f44e4f347c172ca3'
     }
