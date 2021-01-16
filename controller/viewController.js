@@ -10,21 +10,23 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   const slides = [
     {
       image: 'slide-1.jpg',
-      title: ['Yonex', 'Impressive'],
-      subtitle: 'Vua moi ra mat',
-      ref: 'google.com'
+      title: ['Yonex', 'Duora 10 Lengend'],
+      subtitle: 'Mang đến trải nghiệm tuyệt vời',
+      ref:
+        '/vot-cau-long-yonex-duora-10-(legend-vision)-chinh-hang.60015254ac5db12d80c875a1'
     },
     {
       image: 'slide-2.jpg',
-      title: ['Lining', 'Impressive'],
-      subtitle: 'Vua moi ra mat',
-      ref: 'google.com'
+      title: ['Lining', 'Turbo Charging 75'],
+      subtitle: 'Vợt tầm trung mạnh mẽ',
+      ref: '/vot-cau-long-lining-turbo-charging-75.5ffc5d90f44e4f347c172cb3'
     },
     {
       image: 'slide-3.jpg',
-      title: ['VNB', 'Impressive'],
+      title: ['Yonex', 'Astrox 38S - rẻ bất ngờ'],
       subtitle: 'Vua moi ra mat',
-      ref: 'google.com'
+      ref:
+        '/vot-cau-long-yonex-astrox-38s-new-chinh-hang.5ffc5d90f44e4f347c172ca3'
     }
   ];
 
@@ -32,17 +34,17 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     {
       image: 'banner-1.jpg',
       title: 'Yonex',
-      ref: 'google.com'
+      ref: '/vot-cau-long-yonex.cat'
     },
     {
       image: 'banner-2.jpg',
-      title: 'Yonex',
-      ref: 'google.com'
+      title: 'Lining',
+      ref: '/vot-cau-long-lining.cat'
     },
     {
       image: 'banner-3.jpg',
-      title: 'Yonex',
-      ref: 'google.com'
+      title: 'Victor',
+      ref: '/vot-cau-long-victor.cat'
     }
   ];
 
