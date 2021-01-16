@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 // it can remove error cors (http)
 app.use(
   cors({
-    origin: 'https://adminttshopvn.herokuapp.com',
+    origin: ['http://127.0.0.1:8000', 'https://adminttshopvn.herokuapp.com'],
     credentials: true
   })
 );

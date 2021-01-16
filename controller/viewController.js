@@ -217,6 +217,12 @@ exports.getResetPassword = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getSearchAdv = catchAsync(async (req, res, next) => {
+  res.status(200).render('searchAdv', {
+    title: 'Tìm kiếm nâng cao'
+  });
+});
+
 exports.getLeaveReview = catchAsync(async (req, res, next) => {
   // if (!req.user) res.redirect('/login');
   const racket = await Racket.findById(req.params.slugWithID.split('.')[1]);

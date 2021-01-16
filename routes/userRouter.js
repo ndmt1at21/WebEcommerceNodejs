@@ -17,7 +17,18 @@ router.patch(
   userController.updateMe
 );
 
-router.get('/', userController.getUsers);
+router.get(
+  '/currentUser',
+  authController.isLoggedIn,
+  userController.getCurrentUser
+);
+
+router.get(
+  '/',
+  authController.protect,
+  authController.restrictTo('admin'),
+  userController.getUsers
+);
 
 router
   .use(authController.protect, authController.restrictTo('admin'))

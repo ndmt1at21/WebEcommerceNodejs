@@ -35,6 +35,15 @@ const upload = multer({
 
 exports.uploadUserPhoto = upload.single('photo');
 
+exports.getCurrentUser = catchAsync(async (req, res, next) => {
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user: req.user
+    }
+  });
+});
+
 exports.getUsers = catchAsync(async (req, res, next) => {
   if (!req.query) {
     return new AppError('Something error', 500);

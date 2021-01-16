@@ -35,6 +35,11 @@ router.get('/filter', authController.isLoggedIn, viewController.getFilter);
 router.get('/about', authController.isLoggedIn, viewController.getAbout);
 router.get('/search', authController.isLoggedIn, viewController.getSearch);
 router.get(
+  '/searchAdv',
+  authController.isLoggedIn,
+  viewController.getSearchAdv
+);
+router.get(
   '/track-order',
   authController.isLoggedIn,
   viewController.trackOrder

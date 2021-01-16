@@ -1,0 +1,46 @@
+extends base
+
+block content
+  main
+    .container.main.mt-auto
+      form(action='')
+        .form-group.mb-5
+          input.form-control(type='text' name='search-info' id='' placeholder='Search here...')
+        .row
+          .form-group.col-md-6
+            .row
+              .col-md-4.d-flex.align-items-center
+                label(for='inputState') Th&#x1B0;&#x1A1;ng hi&#x1EC7;u
+              .col-md
+                select#inputState.form-control
+                  option(selected='') YONEX
+                  option LINING
+                  option VICTOR
+          .form-group.col-md-6
+            .row
+              .col-md-4.d-flex.align-items-center
+                label(for='inputState') D&ograve;ng v&#x1EE3;t
+              .col-md
+                select#inputState.form-control
+                  option(selected='') Choose...
+                  option ...
+        .row
+          .form-group.col-md-6
+            .row
+              .col-md-4.d-flex.align-items-center
+                label(for='inputState') &Dstrok;&#x1ED9; c&#x1EE9;ng
+              .col-md
+                select#inputState.form-control
+                  option(selected='') Flex
+                  option Medium
+                  option Stiff
+                  option Very stiff
+          .form-group.col-md-6
+            .row
+              .col-md-4.d-flex.align-items-center
+                label(for='inputState') &Dstrok;&#x1ED9; kh&oacute;
+              .col-md
+                select#inputState.form-control
+                  option(selected='') Normal
+                  option Medium
+                  option Advanced
