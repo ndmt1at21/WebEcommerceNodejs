@@ -3,7 +3,7 @@ import axios from 'axios';
 export const fetchDataRackets = async (IDs) => {
   if (IDs.length === 0) return [];
 
-  const url = `/api/v1/racket?_id=`;
+  const url = `/api/v1/racket`;
 
   let query = '';
   IDs.map((id) => {

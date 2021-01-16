@@ -51,6 +51,8 @@ exports.getRackets = catchAsync(async (req, res, next) => {
     return new AppError('Something error', 500);
   }
 
+  console.log(req.query);
+
   let query = Racket.find();
 
   if (req.query.name) {
@@ -68,6 +70,7 @@ exports.getRackets = catchAsync(async (req, res, next) => {
     limit: req.query.limit > 0 ? req.query.limit : 0
   })
     .then((result) => {
+      console.log(result.totalPages);
       res.setHeader('X-Paging-Count', `${result.totalPages}`);
       res.setHeader('X-Paging-Current', `${result.page}`);
 

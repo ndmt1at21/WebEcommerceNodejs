@@ -82,6 +82,7 @@ if (shoppingCarts) {
     shoppingCart.addEventListener('click', async (e) => {
       e.preventDefault();
 
+      console.log('dfjdfhjhassrhsjrj');
       const urlProduct = shoppingCart.getAttribute('value');
       const id = urlProduct.slice(urlProduct.lastIndexOf('.') + 1);
 

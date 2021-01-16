@@ -21,7 +21,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use(
   cors({
     origin: ['http://127.0.0.1:8000', 'https://adminttshopvn.herokuapp.com'],
-    credentials: true
+    credentials: true,
+    exposedHeaders: ['X-Paging-Count', 'X-Paging-Current']
   })
 );
 
