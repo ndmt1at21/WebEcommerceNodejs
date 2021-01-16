@@ -67,10 +67,10 @@ exports.getRackets = catchAsync(async (req, res, next) => {
 
   Racket.paginate(query, {
     page: req.query.page > 0 ? req.query.page : 1,
-    limit: req.query.limit > 0 ? req.query.limit : 0
+    limit: req.query.limit > 0 ? req.query.limit : 10
   })
     .then((result) => {
-      console.log(result.totalPages);
+      console.log(result.docs);
       res.setHeader('X-Paging-Count', `${result.totalPages}`);
       res.setHeader('X-Paging-Current', `${result.page}`);
 
