@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 const fs = require('fs');
 const User = require('../../models/userModel');
 
-dotenv.config({ path: `./config.env` });
+dotenv.config({ path: `./.env` });
 
 const db = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PWD);
 mongoose
@@ -16,12 +16,12 @@ mongoose
     console.log('Connect to database successful');
   });
 
-const rackets = JSON.parse(fs.readFileSync(`${__dirname}/data-user.json`));
+const users = JSON.parse(fs.readFileSync(`${__dirname}/data-user.json`));
 
 // import database
 const importData = async () => {
   try {
-    await User.create(rackets);
+    await User.create(users);
     console.log('successful');
     process.exit();
   } catch (err) {
